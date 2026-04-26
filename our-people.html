@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Our People | Olisa Agbakoba Legal – OAL</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --navy: #0d1f3c;
+    --navy-mid: #183060;
+    --gold: #c8a96e;
+    --gold-light: #dfc28d;
+    --gold-pale: #f5edd9;
+    --red: #b01c2e;
+    --off-white: #f7f5f0;
+    --text-dark: #0d1f3c;
+    --text-mid: #4a5568;
+    --text-light: #718096;
+    --border: #e8e2d6;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #fff;
+    color: var(--text-dark);
+    overflow-x: hidden;
+  }
+
+  .serif { font-family: 'Cormorant Garamond', serif; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+
+  /* ── NAVBAR ── */
+  #navbar {
+    position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
+    background: rgba(13,31,60,0.97);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 4px 30px rgba(0,0,0,0.25);
+  }
+  .nav-logo-main { font-family: 'Cormorant Garamond', serif; }
+  .nav-link {
+    position: relative; color: rgba(255,255,255,0.88);
+    font-size: 13px; font-weight: 500;
+    letter-spacing: 0.04em; text-transform: uppercase;
+    cursor: pointer; transition: color 0.2s;
+    white-space: nowrap; text-decoration: none;
+  }
+  .nav-link:hover { color: var(--gold-light); }
+  .nav-link.active { color: #fff; border-bottom: 2px solid var(--red); padding-bottom: 2px; }
+  .nav-item { position: relative; }
+  .dropdown {
+    position: absolute; top: calc(100% + 14px); left: 0;
+    background: var(--navy); border-top: 2px solid var(--gold);
+    min-width: 210px; border-radius: 0 0 6px 6px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    opacity: 0; visibility: hidden; transform: translateY(8px);
+    transition: all 0.25s ease; z-index: 200;
+  }
+  .nav-item:hover > .dropdown, .dropdown:hover { opacity: 1; visibility: visible; transform: translateY(0); }
+  .dropdown a {
+    display: block; padding: 11px 20px; font-size: 13px;
+    color: rgba(255,255,255,0.78); letter-spacing: 0.02em;
+    transition: all 0.2s; border-bottom: 1px solid rgba(255,255,255,0.06);
+    text-decoration: none;
+  }
+  .dropdown a:last-child { border-bottom: none; }
+  .dropdown a:hover { color: var(--gold-light); background: rgba(200,169,110,0.08); padding-left: 26px; }
+  .dropdown a.active-sub { color: var(--gold-light); }
+  .chev { display: inline-block; margin-left: 4px; font-size: 10px; vertical-align: middle; transition: transform 0.2s; }
+  .nav-item:hover .chev { transform: rotate(180deg); }
+
+  /* Mobile */
+  #mobileMenu { max-height: 0; overflow: hidden; transition: max-height 0.45s cubic-bezier(0.4,0,0.2,1); background: var(--navy); }
+  #mobileMenu.open { max-height: 900px; }
+  .hamburger { background: none; border: none; cursor: pointer; padding: 4px; }
+  .hamburger span { display: block; width: 22px; height: 2px; background: #fff; margin: 5px 0; }
+
+  @media (max-width: 900px) {
+    .hidden-mobile { display: none !important; }
+    .show-mobile { display: block !important; }
+  }
+  @media (min-width: 901px) {
+    .hidden-mobile { display: flex !important; }
+    .show-mobile { display: none !important; }
+  }
+
+  /* ── PAGE HERO ── */
+  .page-hero {
+    background: var(--navy); padding: 160px 0 90px;
+    position: relative; overflow: hidden;
+  }
+  .page-hero::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDSQA-oLuSmotg-Gph5H5TT1Y4xGaRKCKgTyczc72nDw-rsLAMJ50CiLs44xDs4_2B7Bk0eD2fVZIaBWXimICw_YnCVQpCkmJwmWs5E59u4l2AyzVV5-V_nL4nb22p6GFjHglZZPG9pIrgOpgnv13yFq6QWGMMspWkf_VNP1RJhNEjdIn0oo8LLeKkNkvOvOcmrUL8ufRdSe7h7F_x7DXT8kpAeHvDHmLuxy5lMzdNR_bi0oC1Dn93G5HsrTVj6k78ltGy_UZa2atT-') center/cover no-repeat;
+    opacity: 0.06; z-index: 0;
+  }
+  .page-hero-content { position: relative; z-index: 1; }
+
+  /* ── SHARED ── */
+  .section-label {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 14px;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(30px, 3.5vw, 50px);
+    font-weight: 700; line-height: 1.12; color: var(--navy);
+  }
+  .gold-line { width: 48px; height: 2px; background: var(--gold); margin-bottom: 28px; }
+
+  /* BUTTONS */
+  .btn-gold {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--gold); color: var(--navy);
+    font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 14px 28px; border-radius: 2px; border: none; cursor: pointer;
+    transition: background 0.2s, transform 0.2s, box-shadow 0.2s; text-decoration: none;
+  }
+  .btn-gold:hover { background: var(--gold-light); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(200,169,110,0.3); }
+
+  .btn-outline-navy {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: transparent; color: var(--navy);
+    font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 13px 28px; border-radius: 2px; border: 1px solid var(--navy);
+    cursor: pointer; transition: all 0.2s; text-decoration: none;
+  }
+  .btn-outline-navy:hover { background: var(--navy); color: #fff; }
+
+  .btn-outline-white {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: transparent; color: #fff;
+    font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 13px 28px; border-radius: 2px; border: 1px solid rgba(255,255,255,0.4);
+    cursor: pointer; transition: all 0.2s; text-decoration: none;
+  }
+  .btn-outline-white:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.7); }
+
+  /* SCROLL ANIMATION */
+  .fade-up {
+    opacity: 0; transform: translateY(32px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+  .fade-up.delay-1 { transition-delay: 0.1s; }
+  .fade-up.delay-2 { transition-delay: 0.2s; }
+  .fade-up.delay-3 { transition-delay: 0.3s; }
+  .fade-up.delay-4 { transition-delay: 0.4s; }
+
+  /* ── FOUNDER SECTION ── */
+  .founder-section { background: #fff; padding: 100px 0; }
+
+  /* ── MANAGING PARTNER ── */
+  .mp-section { background: var(--off-white); padding: 100px 0; }
+
+  /* ── PARTNER CARD ── */
+  .partner-card {
+    cursor: pointer;
+  }
+  .partner-card-img-wrap {
+    position: relative; overflow: hidden;
+    border-radius: 2px; aspect-ratio: 3/4;
+    background: var(--off-white);
+    margin-bottom: 16px;
+  }
+  .partner-card-img-wrap img {
+    width: 100%; height: 100%; object-fit: cover;
+    filter: grayscale(1);
+    transition: filter 0.5s ease, transform 0.6s ease;
+  }
+  .partner-card:hover .partner-card-img-wrap img {
+    filter: grayscale(0);
+    transform: scale(1.04);
+  }
+  .partner-card-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(13,31,60,0.75) 0%, transparent 50%);
+    opacity: 0; transition: opacity 0.4s ease;
+    display: flex; align-items: flex-end; padding: 20px;
+  }
+  .partner-card:hover .partner-card-overlay { opacity: 1; }
+  .partner-card-cta {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--gold-light);
+  }
+  .partner-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px; font-weight: 700; color: var(--navy);
+    margin-bottom: 4px; transition: color 0.2s;
+  }
+  .partner-card:hover .partner-name { color: var(--gold); }
+  .partner-role {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--text-light);
+  }
+  .partner-specialty {
+    font-size: 12px; color: var(--text-mid);
+    margin-top: 6px; line-height: 1.5;
+  }
+
+  /* ── ASSOCIATE LIST ── */
+  .associate-list-item {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 0; border-bottom: 1px solid var(--border);
+    transition: all 0.2s; cursor: default;
+  }
+  .associate-list-item:hover { padding-left: 8px; }
+  .associate-list-item:hover .assoc-name { color: var(--gold); }
+  .assoc-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px; font-weight: 600; color: var(--navy);
+    transition: color 0.2s;
+  }
+  .assoc-role {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--text-light);
+  }
+  .assoc-area {
+    font-size: 12px; color: var(--text-mid);
+  }
+
+  /* FOOTER */
+  .footer { background: #080f1e; padding: 80px 0 40px; }
+  .footer-link { color: rgba(255,255,255,0.5); font-size: 13px; transition: color 0.2s; display: block; margin-bottom: 10px; text-decoration: none; }
+  .footer-link:hover { color: var(--gold-light); }
+  .footer-heading { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; }
+
+  @media (max-width: 768px) {
+    .container { padding: 0 20px; }
+    .page-hero { padding: 130px 0 70px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════ NAVBAR ════════════════════════════════════ -->
+<header id="navbar">
+  <div class="container">
+    <div style="display:flex; align-items:center; justify-content:space-between; padding:20px 0;">
+      <a href="index.html" style="text-decoration:none; display:flex; flex-direction:column; gap:2px;">
+        <div class="nav-logo-main" style="font-size:28px; font-weight:700; line-height:1; letter-spacing:0.02em;">
+          <span style="color:var(--red)">OA</span><span style="color:var(--gold)">L</span>
+        </div>
+        <div style="font-size:8.5px; letter-spacing:0.22em; color:rgba(255,255,255,0.55); text-transform:uppercase; font-weight:500;">Olisa Agbakoba Legal</div>
+      </a>
+
+      <nav style="display:flex; align-items:center; gap:36px;" class="hidden-mobile">
+        <a href="index.html" class="nav-link">Home</a>
+        <div class="nav-item">
+          <span class="nav-link active">About <span class="chev">▾</span></span>
+          <div class="dropdown">
+            <a href="about.html">About Us</a>
+            <a href="our-people.html" class="active-sub">Our People</a>
+            <a href="#">Careers</a>
+            <a href="#">Responsibility</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <span class="nav-link">Services <span class="chev">▾</span></span>
+          <div class="dropdown">
+            <a href="./practice-areas.html">Practice Areas</a>
+            <a href="#">Sectors</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <span class="nav-link">Academy <span class="chev">▾</span></span>
+          <div class="dropdown">
+            <a href="#">Programs</a>
+            <a href="#">Publications</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <span class="nav-link">Insights <span class="chev">▾</span></span>
+          <div class="dropdown">
+            <a href="#">Articles</a>
+            <a href="#">News</a>
+            <a href="#">Publications</a>
+            <a href="#">Videos</a>
+            <a href="#">Regulatory Updates</a>
+          </div>
+        </div>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+
+      <a href="#" class="btn-gold hidden-mobile" style="font-size:11px; padding:11px 22px;">Book Consultation</a>
+      <button class="hamburger show-mobile" onclick="toggleMenu()" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobileMenu">
+    <div style="padding:8px 20px 24px;">
+      <a href="index.html" style="display:block; padding:14px 0; color:rgba(255,255,255,0.8); font-size:14px; font-weight:500; border-bottom:1px solid rgba(255,255,255,0.08); text-decoration:none;">Home</a>
+      <details style="border-bottom:1px solid rgba(255,255,255,0.08);" open>
+        <summary style="padding:14px 0; color:#fff; font-size:14px; font-weight:500; cursor:pointer; list-style:none; display:flex; justify-content:space-between;">About <span>▾</span></summary>
+        <div style="padding-bottom:8px;">
+          <a href="about.html" style="display:block; padding:10px 0 10px 16px; color:rgba(255,255,255,0.55); font-size:13px; text-decoration:none;">About Us</a>
+          <a href="our-people.html" style="display:block; padding:10px 0 10px 16px; color:var(--gold-light); font-size:13px; text-decoration:none;">Our People</a>
+          <a href="#" style="display:block; padding:10px 0 10px 16px; color:rgba(255,255,255,0.55); font-size:13px; text-decoration:none;">Careers</a>
+          <a href="#" style="display:block; padding:10px 0 10px 16px; color:rgba(255,255,255,0.55); font-size:13px; text-decoration:none;">Responsibility</a>
+        </div>
+      </details>
+      <details style="border-bottom:1px solid rgba(255,255,255,0.08);">
+        <summary style="padding:14px 0; color:rgba(255,255,255,0.8); font-size:14px; font-weight:500; cursor:pointer; list-style:none; display:flex; justify-content:space-between;">Services <span>▾</span></summary>
+        <div style="padding-bottom:8px;">
+          <a href="#" style="display:block; padding:10px 0 10px 16px; color:rgba(255,255,255,0.55); font-size:13px; text-decoration:none;">Practice Areas</a>
+          <a href="#" style="display:block; padding:10px 0 10px 16px; color:rgba(255,255,255,0.55); font-size:13px; text-decoration:none;">Sectors</a>
+        </div>
+      </details>
+      <details style="border-bottom:1px solid rgba(255,255,255,0.08);">
+        <summary style="padding:14px 0; color:rgba(255,255,255,0.8); font-size:14px; font-weight:500; cursor:pointer; list-style:none; display:flex; justify-content:space-between;">Insights <span>▾</span></summary>
+        <div style="padding-bottom:8px;">
+          <a href="#" style="display:block; padding:10px 0 10px 16px; color:rgba(255,255,255,0.55); font-size:13px; text-decoration:none;">Articles</a>
+          <a href="#" style="display:block; padding:10px 0 10px 16px; color:rgba(255,255,255,0.55); font-size:13px; text-decoration:none;">News</a>
+          <a href="#" style="display:block; padding:10px 0 10px 16px; color:rgba(255,255,255,0.55); font-size:13px; text-decoration:none;">Publications</a>
+        </div>
+      </details>
+      <a href="#" style="display:block; padding:14px 0; color:rgba(255,255,255,0.8); font-size:14px; font-weight:500; border-bottom:1px solid rgba(255,255,255,0.08); text-decoration:none;">Contact</a>
+      <a href="#" class="btn-gold" style="width:100%; justify-content:center; margin-top:20px; font-size:12px;">Book Consultation</a>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════════════ PAGE HERO ════════════════════════════════ -->
+<section class="page-hero">
+  <div class="container page-hero-content">
+    <div style="display:flex; align-items:center; gap:8px; margin-bottom:32px;">
+      <a href="index.html" style="font-size:12px; color:rgba(255,255,255,0.45); text-decoration:none; letter-spacing:0.06em; text-transform:uppercase; transition:color 0.2s;" onmouseover="this.style.color='var(--gold-light)'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Home</a>
+      <span style="color:rgba(255,255,255,0.25); font-size:12px;">/</span>
+      <a href="about.html" style="font-size:12px; color:rgba(255,255,255,0.45); text-decoration:none; letter-spacing:0.06em; text-transform:uppercase; transition:color 0.2s;" onmouseover="this.style.color='var(--gold-light)'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">About</a>
+      <span style="color:rgba(255,255,255,0.25); font-size:12px;">/</span>
+      <span style="font-size:12px; color:var(--gold); letter-spacing:0.06em; text-transform:uppercase;">Our People</span>
+    </div>
+    <div style="max-width:680px;">
+      <div class="section-label" style="color:var(--gold-light);">The Partnership</div>
+      <h1 style="font-family:'Cormorant Garamond',serif; font-size:clamp(40px,5.5vw,74px); font-weight:700; color:#fff; line-height:1.05; letter-spacing:-0.01em; margin-bottom:24px;">
+        Exceptional People,<br/><em style="color:var(--gold-light); font-style:italic;">Exceptional Results.</em>
+      </h1>
+      <p style="font-size:16px; color:rgba(255,255,255,0.65); line-height:1.8; max-width:540px;">
+        Our strength lies in the calibre and character of our people — a diverse collective of specialized practitioners united by a singular standard of excellence and client commitment.
+      </p>
+    </div>
+
+    <!-- Quick nav anchors -->
+    <div style="display:flex; gap:8px; margin-top:48px; flex-wrap:wrap;">
+      <a href="#founder" style="font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.6); border:1px solid rgba(255,255,255,0.2); padding:8px 16px; border-radius:2px; text-decoration:none; transition:all 0.2s;" onmouseover="this.style.color='var(--gold-light)';this.style.borderColor='var(--gold)'" onmouseout="this.style.color='rgba(255,255,255,0.6)';this.style.borderColor='rgba(255,255,255,0.2)'">Founder</a>
+      <a href="#managing-partner" style="font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.6); border:1px solid rgba(255,255,255,0.2); padding:8px 16px; border-radius:2px; text-decoration:none; transition:all 0.2s;" onmouseover="this.style.color='var(--gold-light)';this.style.borderColor='var(--gold)'" onmouseout="this.style.color='rgba(255,255,255,0.6)';this.style.borderColor='rgba(255,255,255,0.2)'">Managing Partner</a>
+      <a href="#partners" style="font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.6); border:1px solid rgba(255,255,255,0.2); padding:8px 16px; border-radius:2px; text-decoration:none; transition:all 0.2s;" onmouseover="this.style.color='var(--gold-light)';this.style.borderColor='var(--gold)'" onmouseout="this.style.color='rgba(255,255,255,0.6)';this.style.borderColor='rgba(255,255,255,0.2)'">Partners</a>
+      <a href="#associates" style="font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.6); border:1px solid rgba(255,255,255,0.2); padding:8px 16px; border-radius:2px; text-decoration:none; transition:all 0.2s;" onmouseover="this.style.color='var(--gold-light)';this.style.borderColor='var(--gold)'" onmouseout="this.style.color='rgba(255,255,255,0.6)';this.style.borderColor='rgba(255,255,255,0.2)'">Associates</a>
+      <a href="#culture" style="font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.6); border:1px solid rgba(255,255,255,0.2); padding:8px 16px; border-radius:2px; text-decoration:none; transition:all 0.2s;" onmouseover="this.style.color='var(--gold-light)';this.style.borderColor='var(--gold)'" onmouseout="this.style.color='rgba(255,255,255,0.6)';this.style.borderColor='rgba(255,255,255,0.2)'">Culture</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ FOUNDER ═══════════════════════════════════ -->
+<section class="founder-section" id="founder">
+  <div class="container">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center;" id="founder-grid">
+
+      <!-- Text -->
+      <div class="fade-up">
+        <div class="section-label">Founder & Visionary</div>
+        <div class="gold-line"></div>
+        <h2 style="font-family:'Cormorant Garamond',serif; font-size:clamp(36px,4vw,60px); font-weight:700; color:var(--navy); line-height:1.05; margin-bottom:8px;">
+          Olisa Agbakoba
+        </h2>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:400; font-style:italic; color:var(--gold); margin-bottom:28px;">Senior Advocate of Nigeria (SAN)</div>
+
+        <p style="color:var(--text-mid); font-size:15px; line-height:1.85; margin-bottom:18px;">
+          A pioneer of Nigerian human rights law and a titan of commercial arbitration, Dr. Olisa Agbakoba SAN established OAL with a mandate to bridge the gap between rigorous legal tradition and the dynamic needs of a globalised economy.
+        </p>
+        <p style="color:var(--text-mid); font-size:15px; line-height:1.85; margin-bottom:18px;">
+          His legacy spans maritime innovation, space law advocacy, and constitutional reform — shaping the very fabric of the Nigerian legal landscape for over four decades. A former President of the Nigerian Bar Association, his influence extends well beyond the courtroom.
+        </p>
+        <p style="color:var(--text-mid); font-size:15px; line-height:1.85; margin-bottom:36px;">
+          Dr. Agbakoba's vision was simple but profound: a law firm that does not just advise — but architects outcomes that endure far beyond its own lifetime.
+        </p>
+
+        <!-- Accolades strip -->
+        <div style="display:flex; flex-wrap:wrap; gap:10px;">
+          <span style="background:var(--gold-pale); border:1px solid var(--border); color:var(--navy); font-size:11px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; padding:7px 14px; border-radius:2px;">SAN Designation</span>
+          <span style="background:var(--gold-pale); border:1px solid var(--border); color:var(--navy); font-size:11px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; padding:7px 14px; border-radius:2px;">Former NBA President</span>
+          <span style="background:var(--gold-pale); border:1px solid var(--border); color:var(--navy); font-size:11px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; padding:7px 14px; border-radius:2px;">Human Rights Pioneer</span>
+          <span style="background:var(--gold-pale); border:1px solid var(--border); color:var(--navy); font-size:11px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; padding:7px 14px; border-radius:2px;">Maritime Law Expert</span>
+        </div>
+      </div>
+
+      <!-- Image -->
+      <!-- NOTE TO STANLEY: Replace this image with Dr. Olisa Agbakoba's actual portrait from oal.law/our-people -->
+      <div class="fade-up delay-1" style="position:relative;">
+        <div style="position:relative; z-index:1;">
+          <img src="./images/OA-J-2-scaled.jpg"
+            alt="Dr. Olisa Agbakoba SAN – Founder, OAL"
+            style="width:100%; height:560px; object-fit:cover; object-position:top; border-radius:2px; display:block;"/>
+        </div>
+        <!-- Gold corner accent -->
+        <div style="position:absolute; top:-16px; left:-16px; width:50%; height:50%; border:2px solid var(--gold); border-radius:2px; z-index:0;"></div>
+        <!-- Quote box -->
+        <div style="position:absolute; bottom:-28px; right:-28px; background:var(--red); padding:24px 28px; border-radius:2px; z-index:2; max-width:240px; box-shadow:0 16px 40px rgba(176,28,46,0.25);">
+          <div style="font-family:'Cormorant Garamond',serif; font-size:13px; font-style:italic; color:rgba(255,255,255,0.9); line-height:1.6;">"Law is the instrument through which a society's highest aspirations become reality."</div>
+          <div style="font-size:10px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.55); margin-top:10px;">— Olisa Agbakoba SAN</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ MANAGING PARTNER ═════════════════════════ -->
+<section class="mp-section" id="managing-partner">
+  <div class="container">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start;" id="mp-grid">
+
+      <!-- Image -->
+      <!-- NOTE TO STANLEY: Replace with Yvonne Ezekiel's actual portrait from oal.law/our-people -->
+      <div class="fade-up" style="position:relative;">
+        <div style="position:relative; z-index:1;">
+          <img src="./images/YE-3-scaled.jpg"
+            alt="Yvonne Ezekiel – Managing Partner, OAL"
+            style="width:100%; height:520px; object-fit:cover; object-position:top; border-radius:2px; display:block;"/>
+          <!-- Gold accent layer -->
+          <div style="position:absolute; top:-12px; right:-12px; width:45%; height:45%; border:2px solid var(--gold); border-radius:2px; z-index:-1;"></div>
+        </div>
+      </div>
+
+      <!-- Text + pullout card -->
+      <div class="fade-up delay-1" style="padding-top:20px;">
+        <div class="section-label">Managing Partner</div>
+        <div class="gold-line"></div>
+        <h2 style="font-family:'Cormorant Garamond',serif; font-size:clamp(32px,3.5vw,52px); font-weight:700; color:var(--navy); line-height:1.1; margin-bottom:6px;">Yvonne Ezekiel</h2>
+        <div style="font-size:13px; font-weight:500; color:var(--gold); letter-spacing:0.06em; text-transform:uppercase; margin-bottom:28px;">Managing Partner · OAL</div>
+
+        <!-- Quote pullout -->
+        <div style="border-left:4px solid var(--gold); padding:20px 24px; background:#fff; border-radius:0 2px 2px 0; margin-bottom:28px; box-shadow:0 4px 20px rgba(13,31,60,0.06);">
+          <p style="font-family:'Cormorant Garamond',serif; font-size:20px; font-style:italic; color:var(--navy); line-height:1.55;">
+            "Drawing upon our extensive background in law and our profound comprehension of business dynamics, we have endeavoured to establish OAL as a firm that surpasses expectations in client service — making a meaningful impact that endures far beyond our lifetimes."
+          </p>
+        </div>
+
+        <p style="color:var(--text-mid); font-size:15px; line-height:1.85; margin-bottom:16px;">
+          As Managing Partner, Yvonne Ezekiel directs the firm's strategic growth and operational excellence. With a focus on corporate governance and complex litigation, she ensures OAL remains at the vanguard of legal service delivery in Nigeria and across Africa.
+        </p>
+        <p style="color:var(--text-mid); font-size:15px; line-height:1.85; margin-bottom:32px;">
+          Her leadership is characterised by a people-first philosophy — fostering an environment where multidisciplinary expertise meets unwavering ethical standards and client-centricity.
+        </p>
+
+        <div style="display:flex; flex-wrap:wrap; gap:10px; margin-bottom:32px;">
+          <span style="background:var(--navy); color:rgba(255,255,255,0.8); font-size:11px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; padding:7px 14px; border-radius:2px;">Corporate Governance</span>
+          <span style="background:var(--navy); color:rgba(255,255,255,0.8); font-size:11px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; padding:7px 14px; border-radius:2px;">Complex Litigation</span>
+          <span style="background:var(--navy); color:rgba(255,255,255,0.8); font-size:11px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; padding:7px 14px; border-radius:2px;">Strategic Growth</span>
+        </div>
+
+        <a href="#" class="btn-gold">Book a Consultation →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ THE PARTNERSHIP (Partners Grid) ══════════ -->
+<section style="background:#fff; padding:100px 0;" id="partners">
+  <div class="container">
+    <div style="text-align:center; max-width:580px; margin:0 auto 64px;" class="fade-up">
+      <div class="section-label">Senior Leadership</div>
+      <div class="gold-line" style="margin:0 auto 28px;"></div>
+      <h2 class="section-title">The Partnership</h2>
+      <p style="color:var(--text-mid); font-size:15px; line-height:1.8; margin-top:16px;">
+        A diverse collective of specialised practitioners, united by a singular standard of excellence and an unwavering commitment to client outcomes.
+      </p>
+    </div>
+
+    <!-- NOTE TO STANLEY: Replace each partner image with their actual headshots from oal.law/our-people.
+         The names below are real OAL partners — match each photo to the correct person. -->
+    <div style="display:grid; grid-template-columns:repeat(5, 1fr); gap:28px 20px;" id="partners-grid">
+
+       <div class="partner-card fade-up delay-3">
+        <div class="partner-card-img-wrap">
+          <img src="./images/imgi_6_Osita-Okoro-BW-modified.png"/>
+          <div class="partner-card-overlay"><span class="partner-card-cta">View Profile →</span></div>
+        </div>
+        <div class="partner-name">Osita Okoro</div>
+        <div class="partner-role">Deputy Managing Partner</div>
+        <div class="partner-specialty">Aviation</div>
+      </div>
+
+      <div class="partner-card fade-up">
+        <div class="partner-card-img-wrap">
+          <img src="./images/imgi_8_Collins-Okeke-B_W.png"/>
+          <div class="partner-card-overlay"><span class="partner-card-cta">View Profile →</span></div>
+        </div>
+        <div class="partner-name">Collins Okeke</div>
+        <div class="partner-role">Senior Partner</div>
+        <div class="partner-specialty">Energy & Natural Resources</div>
+      </div>
+
+      <div class="partner-card fade-up delay-1">
+        <div class="partner-card-img-wrap">
+          <img src="./images/imgi_9_Beverley-Agbakoba-Onyejianya-B_W.png"/>
+          <div class="partner-card-overlay"><span class="partner-card-cta">View Profile →</span></div>
+        </div>
+        <div class="partner-name">Beverley Agbakoba</div>
+        <div class="partner-role">Senior Partner</div>
+        <div class="partner-specialty">Corporate & Commercial Law</div>
+      </div>
+
+      <div class="partner-card fade-up delay-2">
+        <div class="partner-card-img-wrap">
+          <img src="./images/imgi_12_Dr.-Kemi-Onanuga-B_W.png"/>
+          <div class="partner-card-overlay"><span class="partner-card-cta">View Profile →</span></div>
+        </div>
+        <div class="partner-name">Dr Kemi Onanuga</div>
+        <div class="partner-role">Partner</div>
+        <div class="partner-specialty">Alternative Dispute resolution & Arbitration</div>
+      </div>
+
+     
+
+      <div class="partner-card fade-up delay-4">
+        <div class="partner-card-img-wrap">
+          <img src="./images/imgi_7_Babatunde-Ogungbamila-BW.png"/>
+          <div class="partner-card-overlay"><span class="partner-card-cta">View Profile →</span></div>
+        </div>
+        <div class="partner-name">Babatunde Ogungbamila</div>
+        <div class="partner-role">Partner</div>
+        <div class="partner-specialty">Technology & Innovation Law</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ ASSOCIATES ═══════════════════════════════ -->
+<section style="background:var(--off-white); padding:100px 0;" id="associates">
+  <div class="container">
+    <div style="display:grid; grid-template-columns:1fr 2fr; gap:80px; align-items:start;" id="associates-grid">
+
+      <!-- Left: intro + careers CTA -->
+      <div class="fade-up">
+        <div class="section-label">The Team</div>
+        <div class="gold-line"></div>
+        <h2 class="section-title" style="margin-bottom:20px;">Associates &amp; Senior Associates</h2>
+        <p style="color:var(--text-mid); font-size:15px; line-height:1.85; margin-bottom:32px;">
+          Behind every successful mandate is a team of dedicated associates whose research, strategy, and execution form the backbone of OAL's service delivery.
+        </p>
+
+        <!-- Join CTA card -->
+        <div style="background:var(--navy); padding:32px; border-radius:2px;">
+          <h4 style="font-family:'Cormorant Garamond',serif; font-size:24px; font-weight:700; color:#fff; margin-bottom:12px;">Join Our Ranks</h4>
+          <p style="font-size:13px; color:rgba(255,255,255,0.6); line-height:1.7; margin-bottom:24px;">We are always seeking exceptional legal talent to join our multidisciplinary practice groups. If you are driven by excellence and innovation, we'd like to meet you.</p>
+          <a href="#" class="btn-gold" style="font-size:11px;">View Open Roles →</a>
+        </div>
+      </div>
+
+      <!-- Right: associate lists -->
+      <div class="fade-up delay-1">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:40px;" id="assoc-cols">
+
+          <!-- Senior Associates -->
+          <div>
+            <div style="font-size:11px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold); margin-bottom:20px; padding-bottom:12px; border-bottom:2px solid var(--gold);">Senior Associates</div>
+            <div class="associate-list-item">
+              <div>
+                <div class="assoc-name">Tola Onayemi</div>
+                <div class="assoc-area">Energy & Regulatory Affairs</div>
+              </div>
+              <div class="assoc-role">Sr. Associate</div>
+            </div>
+            <div class="associate-list-item">
+              <div>
+                <div class="assoc-name">Oseloka Agbakoba</div>
+                <div class="assoc-area">Corporate & Commercial</div>
+              </div>
+              <div class="assoc-role">Sr. Associate</div>
+            </div>
+            <div class="associate-list-item">
+              <div>
+                <div class="assoc-name">Chika Izuora</div>
+                <div class="assoc-area">Litigation & ADR</div>
+              </div>
+              <div class="assoc-role">Sr. Associate</div>
+            </div>
+            <div class="associate-list-item">
+              <div>
+                <div class="assoc-name">Abimbola G.</div>
+                <div class="assoc-area">Maritime Law</div>
+              </div>
+              <div class="assoc-role">Sr. Associate</div>
+            </div>
+          </div>
+
+          <!-- Associates -->
+          <div>
+            <div style="font-size:11px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold); margin-bottom:20px; padding-bottom:12px; border-bottom:2px solid var(--gold);">Associates</div>
+            <div class="associate-list-item">
+              <div>
+                <div class="assoc-name">Emeka Nwadioke</div>
+                <div class="assoc-area">Technology Law</div>
+              </div>
+              <div class="assoc-role">Associate</div>
+            </div>
+            <div class="associate-list-item">
+              <div>
+                <div class="assoc-name">Nneka Nwosu</div>
+                <div class="assoc-area">Debt Recovery</div>
+              </div>
+              <div class="assoc-role">Associate</div>
+            </div>
+            <div class="associate-list-item">
+              <div>
+                <div class="assoc-name">Victor C.</div>
+                <div class="assoc-area">Corporate Governance</div>
+              </div>
+              <div class="assoc-role">Associate</div>
+            </div>
+            <div class="associate-list-item">
+              <div>
+                <div class="assoc-name">Fatima S.</div>
+                <div class="assoc-area">Regulatory Compliance</div>
+              </div>
+              <div class="assoc-role">Associate</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ CULTURE ══════════════════════════════════ -->
+<section style="background:#fff; padding:100px 0; overflow:hidden;" id="culture">
+  <div class="container">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center;" id="culture-grid">
+
+      <div class="fade-up">
+        <div class="section-label">Our Culture</div>
+        <div class="gold-line"></div>
+        <h2 class="section-title" style="margin-bottom:24px;">Collaborative Wisdom.<br/>Exceptional Impact.</h2>
+        <p style="color:var(--text-mid); font-size:15px; line-height:1.85; margin-bottom:18px;">
+          At OAL, we believe that the best legal solutions are born from a culture of intellectual curiosity and mutual respect. We operate not as a series of silos, but as a cohesive team of expertise.
+        </p>
+        <p style="color:var(--text-mid); font-size:15px; line-height:1.85; margin-bottom:36px;">
+          Our professionals are encouraged to look beyond the immediate legal question — considering the commercial, social, and long-term implications of every counsel we provide. This editorial approach to law defines the OAL experience.
+        </p>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+          <div style="padding:20px; background:var(--off-white); border-radius:2px; border-top:2px solid var(--gold);">
+            <div style="font-family:'Cormorant Garamond',serif; font-size:34px; font-weight:700; color:var(--navy); line-height:1;">12+</div>
+            <div style="font-size:12px; font-weight:600; color:var(--text-light); letter-spacing:0.08em; text-transform:uppercase; margin-top:4px;">Partners</div>
+          </div>
+          <div style="padding:20px; background:var(--off-white); border-radius:2px; border-top:2px solid var(--red);">
+            <div style="font-family:'Cormorant Garamond',serif; font-size:34px; font-weight:700; color:var(--navy); line-height:1;">50+</div>
+            <div style="font-size:12px; font-weight:600; color:var(--text-light); letter-spacing:0.08em; text-transform:uppercase; margin-top:4px;">Legal Professionals</div>
+          </div>
+          <div style="padding:20px; background:var(--off-white); border-radius:2px; border-top:2px solid var(--gold);">
+            <div style="font-family:'Cormorant Garamond',serif; font-size:34px; font-weight:700; color:var(--navy); line-height:1;">45+</div>
+            <div style="font-size:12px; font-weight:600; color:var(--text-light); letter-spacing:0.08em; text-transform:uppercase; margin-top:4px;">Years Combined</div>
+          </div>
+          <div style="padding:20px; background:var(--off-white); border-radius:2px; border-top:2px solid var(--red);">
+            <div style="font-family:'Cormorant Garamond',serif; font-size:34px; font-weight:700; color:var(--navy); line-height:1;">100%</div>
+            <div style="font-size:12px; font-weight:600; color:var(--text-light); letter-spacing:0.08em; text-transform:uppercase; margin-top:4px;">Client Commitment</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- NOTE TO STANLEY: These are the same culture images used in about.html.
+           If you download better team/office photos from oal.law, swap them in here too. -->
+     <div class="fade-up" style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+        <div style="display:flex; flex-direction:column; gap:14px; padding-top:28px;">
+          <img src="./images/images.jpg" alt="Team collaboration" style="width:100%; height:200px; object-fit:cover; border-radius:2px;"/>
+          <img src="./images/handshakeblogpic.jpg" alt="OAL lobby" style="width:100%; height:160px; object-fit:cover; border-radius:2px;"/>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:14px;">
+          <img src="./images/Family-Law-Firm-in-Nigeria-768x456.jpg" alt="Legal professional" style="width:100%; height:160px; object-fit:cover; border-radius:2px;"/>
+          <img src="./images/culture-togetherness.jpg" alt="Lawyers discussion" style="width:100%; height:200px; object-fit:cover; border-radius:2px;"/>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ CTA ══════════════════════════════════════ -->
+<section style="background:var(--navy); padding:90px 0; position:relative; overflow:hidden;">
+  <div style="position:absolute; right:-20px; top:50%; transform:translateY(-50%); font-family:'Cormorant Garamond',serif; font-size:280px; font-weight:700; color:rgba(255,255,255,0.03); line-height:1; pointer-events:none; user-select:none;">OAL</div>
+  <div class="container" style="position:relative; z-index:1; text-align:center;">
+    <div class="fade-up">
+      <div class="section-label" style="color:var(--gold-light);">Work With Our Team</div>
+      <h2 style="font-family:'Cormorant Garamond',serif; font-size:clamp(32px,4vw,58px); font-weight:700; color:#fff; line-height:1.1; margin-bottom:20px;">
+        Ready to Work With<br/><em style="color:var(--gold-light); font-style:italic;">Nigeria's Best Legal Minds?</em>
+      </h2>
+      <p style="color:rgba(255,255,255,0.6); font-size:16px; max-width:460px; margin:0 auto 40px; line-height:1.7;">
+        Our team of experts is ready to engage. Book a consultation today and experience the OAL difference firsthand.
+      </p>
+      <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
+        <a href="#" class="btn-gold">Book a Consultation →</a>
+        <a href="contact.html" class="btn-outline-white">Contact Us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ FOOTER ════════════════════════════════════ -->
+<footer class="footer">
+  <div class="container">
+    <div style="display:grid; gap:48px; padding-bottom:60px; border-bottom:1px solid rgba(255,255,255,0.07);" id="footer-grid">
+      <div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:32px; font-weight:700; margin-bottom:4px; line-height:1;">
+          <span style="color:var(--red)">OA</span><span style="color:var(--gold)">L</span>
+        </div>
+        <div style="font-size:9px; letter-spacing:0.22em; color:rgba(255,255,255,0.35); text-transform:uppercase; font-weight:500; margin-bottom:20px;">Olisa Agbakoba Legal</div>
+        <p style="font-size:13px; color:rgba(255,255,255,0.45); line-height:1.75; max-width:280px; margin-bottom:28px;">A multi-specialist law firm providing comprehensive legal services with a focus on commercial law, energy, arbitration, and policy advocacy.</p>
+        <div style="display:flex; gap:12px;">
+          <a href="#" style="width:36px; height:36px; border:1px solid rgba(255,255,255,0.15); border-radius:2px; display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,0.5); font-size:14px; text-decoration:none; transition:all 0.2s;" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.15)';this.style.color='rgba(255,255,255,0.5)'">in</a>
+          <a href="#" style="width:36px; height:36px; border:1px solid rgba(255,255,255,0.15); border-radius:2px; display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,0.5); font-size:14px; text-decoration:none; transition:all 0.2s;" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.15)';this.style.color='rgba(255,255,255,0.5)'">tw</a>
+          <a href="#" style="width:36px; height:36px; border:1px solid rgba(255,255,255,0.15); border-radius:2px; display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,0.5); font-size:14px; text-decoration:none; transition:all 0.2s;" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.15)';this.style.color='rgba(255,255,255,0.5)'">fb</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-heading">Quick Links</div>
+        <a href="index.html" class="footer-link">Home</a>
+        <a href="about.html" class="footer-link">About Us</a>
+        <a href="our-people.html" class="footer-link">Our People</a>
+        <a href="#" class="footer-link">Practice Areas</a>
+        <a href="#" class="footer-link">OAL Academy</a>
+        <a href="#" class="footer-link">Insights</a>
+        <a href="#" class="footer-link">Careers</a>
+      </div>
+      <div>
+        <div class="footer-heading">Legal</div>
+        <a href="#" class="footer-link">Privacy Policy</a>
+        <a href="#" class="footer-link">Terms of Use</a>
+        <a href="#" class="footer-link">Disclaimer</a>
+        <a href="#" class="footer-link">Cookies Policy</a>
+        <a href="#" class="footer-link">Sitemap</a>
+      </div>
+      <div>
+        <div class="footer-heading">Our Offices</div>
+        <div style="margin-bottom:16px;">
+          <div style="font-size:11px; color:var(--gold); font-weight:600; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:4px;">Lagos (HQ)</div>
+          <div style="font-size:13px; color:rgba(255,255,255,0.45); line-height:1.6;">10A Ilabere Street,<br/>Ikoyi, Lagos</div>
+        </div>
+        <div style="margin-bottom:16px;">
+          <div style="font-size:11px; color:var(--gold); font-weight:600; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:4px;">Abuja</div>
+          <div style="font-size:13px; color:rgba(255,255,255,0.45); line-height:1.6;">FCT, Abuja</div>
+        </div>
+        <div>
+          <div style="font-size:11px; color:var(--gold); font-weight:600; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:4px;">Port Harcourt</div>
+          <div style="font-size:13px; color:rgba(255,255,255,0.45); line-height:1.6;">Port Harcourt, Rivers State</div>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex; justify-content:space-between; align-items:center; padding-top:28px; flex-wrap:wrap; gap:12px;">
+      <p style="font-size:12px; color:rgba(255,255,255,0.3);">© 2025 Olisa Agbakoba Legal. All Rights Reserved.</p>
+      <p style="font-size:12px; color:rgba(255,255,255,0.3);">Designed with excellence for OAL.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════════ SCRIPTS ══════════════════════════════════ -->
+<script>
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+
+  // Scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Smooth scroll for anchor nav pills
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        const offset = 90;
+        window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - offset, behavior: 'smooth' });
+      }
+    });
+  });
+
+  // Responsive grids
+  function applyResponsive() {
+    const w = window.innerWidth;
+
+    const founderGrid = document.getElementById('founder-grid');
+    if (founderGrid) founderGrid.style.gridTemplateColumns = w < 768 ? '1fr' : '1fr 1fr';
+
+    const mpGrid = document.getElementById('mp-grid');
+    if (mpGrid) mpGrid.style.gridTemplateColumns = w < 768 ? '1fr' : '1fr 1fr';
+
+    const partnersGrid = document.getElementById('partners-grid');
+    if (partnersGrid) partnersGrid.style.gridTemplateColumns = w < 640 ? '1fr 1fr' : w < 900 ? 'repeat(3,1fr)' : 'repeat(5, 1fr)';
+
+    const associatesGrid = document.getElementById('associates-grid');
+    if (associatesGrid) associatesGrid.style.gridTemplateColumns = w < 900 ? '1fr' : '1fr 2fr';
+
+    const assocCols = document.getElementById('assoc-cols');
+    if (assocCols) assocCols.style.gridTemplateColumns = w < 600 ? '1fr' : '1fr 1fr';
+
+    const cultureGrid = document.getElementById('culture-grid');
+    if (cultureGrid) cultureGrid.style.gridTemplateColumns = w < 768 ? '1fr' : '1fr 1fr';
+
+    const footerGrid = document.getElementById('footer-grid');
+    if (footerGrid) footerGrid.style.gridTemplateColumns = w < 768 ? '1fr' : w < 1024 ? '1fr 1fr' : '2fr 1fr 1fr 1fr';
+  }
+
+  applyResponsive();
+  window.addEventListener('resize', applyResponsive);
+</script>
+
+</body>
+</html>

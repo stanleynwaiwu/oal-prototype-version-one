@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Contact Us | Olisa Agbakoba Legal – OAL</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --navy: #0d1f3c;
+    --navy-mid: #183060;
+    --gold: #c8a96e;
+    --gold-light: #dfc28d;
+    --gold-pale: #f5edd9;
+    --red: #b01c2e;
+    --off-white: #f7f5f0;
+    --text-dark: #0d1f3c;
+    --text-mid: #4a5568;
+    --text-light: #718096;
+    --border: #e8e2d6;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'DM Sans', sans-serif; background: #fff; color: var(--text-dark); overflow-x: hidden; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+
+  /* ── NAVBAR ── */
+  #navbar {
+    position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
+    background: rgba(13,31,60,0.97); backdrop-filter: blur(12px);
+    box-shadow: 0 4px 30px rgba(0,0,0,0.25);
+  }
+  .nav-logo-main { font-family: 'Cormorant Garamond', serif; }
+  .nav-link {
+    position: relative; color: rgba(255,255,255,0.88);
+    font-size: 13px; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase;
+    cursor: pointer; transition: color 0.2s; white-space: nowrap; text-decoration: none;
+  }
+  .nav-link:hover { color: var(--gold-light); }
+  .nav-link.active { color: #fff; border-bottom: 2px solid var(--red); padding-bottom: 2px; }
+  .nav-item { position: relative; }
+  .dropdown {
+    position: absolute; top: calc(100% + 14px); left: 0;
+    background: var(--navy); border-top: 2px solid var(--gold);
+    min-width: 210px; border-radius: 0 0 6px 6px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    opacity: 0; visibility: hidden; transform: translateY(8px);
+    transition: all 0.25s ease; z-index: 200;
+  }
+  .nav-item:hover > .dropdown, .dropdown:hover { opacity: 1; visibility: visible; transform: translateY(0); }
+  .dropdown a {
+    display: block; padding: 11px 20px; font-size: 13px;
+    color: rgba(255,255,255,0.78); letter-spacing: 0.02em;
+    transition: all 0.2s; border-bottom: 1px solid rgba(255,255,255,0.06); text-decoration: none;
+  }
+  .dropdown a:last-child { border-bottom: none; }
+  .dropdown a:hover { color: var(--gold-light); background: rgba(200,169,110,0.08); padding-left: 26px; }
+  .chev { display: inline-block; margin-left: 4px; font-size: 10px; vertical-align: middle; transition: transform 0.2s; }
+  .nav-item:hover .chev { transform: rotate(180deg); }
+  #mobileMenu { max-height: 0; overflow: hidden; transition: max-height 0.45s cubic-bezier(0.4,0,0.2,1); background: var(--navy); }
+  #mobileMenu.open { max-height: 900px; }
+  .hamburger { background: none; border: none; cursor: pointer; padding: 4px; }
+  .hamburger span { display: block; width: 22px; height: 2px; background: #fff; margin: 5px 0; }
+  @media (max-width: 900px) { .hidden-mobile { display: none !important; } .show-mobile { display: block !important; } }
+  @media (min-width: 901px) { .hidden-mobile { display: flex !important; } .show-mobile { display: none !important; } }
+
+  /* ── SPLIT HERO ── */
+  .split-hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 100vh;
+    position: relative;
+  }
+
+  /* Left dark panel */
+  .split-left {
+    background: var(--navy);
+    padding: 160px 64px 80px;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    position: relative; overflow: hidden;
+  }
+  .split-left::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(200,169,110,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(200,169,110,0.06) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+  .split-left-content { position: relative; z-index: 1; }
+
+  /* Right image panel */
+  .split-right {
+    position: relative; overflow: hidden;
+  }
+  .split-right img {
+    width: 100%; height: 100%; object-fit: cover;
+    object-position: center;
+    filter: brightness(0.75) contrast(1.05);
+  }
+  .split-right-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to right, rgba(13,31,60,0.6) 0%, transparent 60%);
+  }
+
+  /* The big heading that spans the split */
+  .split-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(52px, 7vw, 96px);
+    font-weight: 700;
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+  }
+  .split-heading .line-light {
+    color: rgba(255,255,255,0.92);
+    display: block;
+  }
+  .split-heading .line-gold {
+    color: var(--gold);
+    font-style: italic;
+    display: block;
+  }
+
+  /* Info strips on the left panel */
+  .info-strip {
+    display: flex; align-items: flex-start; gap: 14px;
+    padding: 18px 0; border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .info-strip:first-child { border-top: 1px solid rgba(255,255,255,0.08); }
+  .info-icon {
+    width: 36px; height: 36px; flex-shrink: 0;
+    border: 1px solid rgba(200,169,110,0.3); border-radius: 2px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; margin-top: 2px;
+  }
+  .info-label { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 4px; }
+  .info-value { font-size: 14px; color: rgba(255,255,255,0.8); line-height: 1.6; }
+  .info-value a { color: rgba(255,255,255,0.8); text-decoration: none; transition: color 0.2s; }
+  .info-value a:hover { color: var(--gold-light); }
+
+  /* ── CONTACT BODY ── */
+  .contact-body { background: #fff; }
+
+  /* ── OFFICE CARDS ── */
+  .office-card {
+    background: #fff; border: 1px solid var(--border); border-radius: 4px;
+    padding: 28px; border-top: 3px solid var(--gold);
+    transition: box-shadow 0.3s, transform 0.3s;
+  }
+  .office-card:hover { box-shadow: 0 20px 48px rgba(13,31,60,0.09); transform: translateY(-3px); }
+  .office-card.hq { border-top-color: var(--navy); border-top-width: 4px; }
+  .office-badge {
+    display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
+    padding: 4px 10px; border-radius: 2px; margin-bottom: 12px;
+  }
+  .office-badge.hq-badge { background: var(--navy); color: var(--gold); }
+  .office-badge.branch-badge { background: var(--gold-pale); color: var(--navy); }
+  .office-name { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+  .office-addr { font-size: 13px; color: var(--text-mid); line-height: 1.7; margin-bottom: 14px; }
+  .office-contact { font-size: 12px; color: var(--gold); font-weight: 600; text-decoration: none; display: block; }
+  .office-contact:hover { color: var(--navy); }
+
+  /* ── FORM ── */
+  .form-group { margin-bottom: 28px; }
+  .form-label {
+    display: block; font-size: 10px; font-weight: 600; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--text-light); margin-bottom: 8px;
+  }
+  .form-input {
+    width: 100%; background: var(--off-white); border: none;
+    border-bottom: 2px solid var(--border);
+    padding: 14px 16px; font-family: 'DM Sans', sans-serif;
+    font-size: 15px; color: var(--text-dark);
+    transition: border-color 0.2s, background 0.2s;
+    border-radius: 2px 2px 0 0;
+    outline: none;
+  }
+  .form-input:focus { border-bottom-color: var(--navy); background: #fff; }
+  .form-input::placeholder { color: var(--text-light); font-size: 14px; }
+  select.form-input { cursor: pointer; appearance: none; -webkit-appearance: none; }
+
+  /* ── FAQ ── */
+  .faq-item {
+    border-bottom: 1px solid var(--border); padding: 0;
+    overflow: hidden;
+  }
+  .faq-question {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 22px 0; cursor: pointer;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px; font-weight: 700; color: var(--navy);
+    transition: color 0.2s; user-select: none;
+  }
+  .faq-question:hover { color: var(--gold); }
+  .faq-icon {
+    width: 28px; height: 28px; flex-shrink: 0;
+    border: 1px solid var(--border); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; color: var(--gold); transition: transform 0.3s, background 0.2s;
+    margin-left: 16px;
+  }
+  .faq-item.open .faq-icon { transform: rotate(45deg); background: var(--navy); border-color: var(--navy); color: #fff; }
+  .faq-answer {
+    max-height: 0; overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.3s ease;
+    font-size: 14px; color: var(--text-mid); line-height: 1.8;
+  }
+  .faq-item.open .faq-answer { max-height: 200px; padding-bottom: 20px; }
+
+  /* ── SHARED ── */
+  .section-label { font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
+  .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(30px,3.5vw,48px); font-weight: 700; line-height: 1.12; color: var(--navy); }
+  .gold-line { width: 48px; height: 2px; background: var(--gold); margin-bottom: 28px; }
+
+  .btn-gold {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    background: var(--gold); color: var(--navy);
+    font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 16px 32px; border-radius: 2px; border: none; cursor: pointer; width: 100%;
+    transition: background 0.2s, transform 0.2s, box-shadow 0.2s; text-decoration: none;
+  }
+  .btn-gold:hover { background: var(--gold-light); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(200,169,110,0.35); }
+
+  .btn-outline-white {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: transparent; color: #fff;
+    font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 13px 28px; border-radius: 2px; border: 1px solid rgba(255,255,255,0.4);
+    cursor: pointer; transition: all 0.2s; text-decoration: none;
+  }
+  .btn-outline-white:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.7); }
+  .btn-outline-navy {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: transparent; color: var(--navy);
+    font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 13px 28px; border-radius: 2px; border: 1px solid var(--navy);
+    cursor: pointer; transition: all 0.2s; text-decoration: none;
+  }
+  .btn-outline-navy:hover { background: var(--navy); color: #fff; }
+
+  .fade-up { opacity: 0; transform: translateY(32px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+  .fade-up.delay-1 { transition-delay: 0.1s; }
+  .fade-up.delay-2 { transition-delay: 0.2s; }
+  .fade-up.delay-3 { transition-delay: 0.3s; }
+
+  /* FOOTER */
+  .footer { background: #080f1e; padding: 80px 0 40px; }
+  .footer-link { color: rgba(255,255,255,0.5); font-size: 13px; transition: color 0.2s; display: block; margin-bottom: 10px; text-decoration: none; }
+  .footer-link:hover { color: var(--gold-light); }
+  .footer-heading { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; }
+
+  @media (max-width: 900px) {
+    .split-hero { grid-template-columns: 1fr; min-height: auto; }
+    .split-left { padding: 140px 24px 60px; }
+    .split-right { height: 320px; }
+    .container { padding: 0 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════ NAVBAR ════════════════════════════════════ -->
+<header id="navbar">
+  <div class="container">
+    <div style="display:flex; align-items:center; justify-content:space-between; padding:20px 0;">
+      <a href="index.html" style="text-decoration:none; display:flex; flex-direction:column; gap:2px;">
+        <div class="nav-logo-main" style="font-size:28px; font-weight:700; line-height:1; letter-spacing:0.02em;">
+          <span style="color:var(--red)">OA</span><span style="color:var(--gold)">L</span>
+        </div>
+        <div style="font-size:8.5px; letter-spacing:0.22em; color:rgba(255,255,255,0.55); text-transform:uppercase; font-weight:500;">Olisa Agbakoba Legal</div>
+      </a>
+
+      <nav style="display:flex; align-items:center; gap:36px;" class="hidden-mobile">
+        <a href="index.html" class="nav-link">Home</a>
+        <div class="nav-item">
+          <span class="nav-link">About <span class="chev">▾</span></span>
+          <div class="dropdown">
+            <a href="about.html">About Us</a>
+            <a href="our-people.html">Our People</a>
+            <a href="#">Careers</a>
+            <a href="#">Responsibility</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <span class="nav-link">Services <span class="chev">▾</span></span>
+          <div class="dropdown">
+            <a href="practice-areas.html">Practice Areas</a>
+            <a href="#">Sectors</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <span class="nav-link">Academy <span class="chev">▾</span></span>
+          <div class="dropdown">
+            <a href="#">Programs</a>
+            <a href="#">Publications</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <span class="nav-link">Insights <span class="chev">▾</span></span>
+          <div class="dropdown">
+            <a href="#">Articles</a>
+            <a href="#">News</a>
+            <a href="#">Publications</a>
+            <a href="#">Videos</a>
+            <a href="#">Regulatory Updates</a>
+          </div>
+        </div>
+        <a href="contact.html" class="nav-link active">Contact</a>
+      </nav>
+
+      <a href="#form" class="btn-gold hidden-mobile" style="font-size:11px; padding:11px 22px; width:auto;">Book Consultation</a>
+      <button class="hamburger show-mobile" onclick="toggleMenu()" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <div id="mobileMenu">
+    <div style="padding:8px 20px 24px;">
+      <a href="index.html" style="display:block; padding:14px 0; color:rgba(255,255,255,0.8); font-size:14px; border-bottom:1px solid rgba(255,255,255,0.08); text-decoration:none;">Home</a>
+      <details style="border-bottom:1px solid rgba(255,255,255,0.08);">
+        <summary style="padding:14px 0; color:rgba(255,255,255,0.8); font-size:14px; cursor:pointer; list-style:none; display:flex; justify-content:space-between;">About <span>▾</span></summary>
+        <div style="padding-bottom:8px;">
+          <a href="about.html" style="display:block; padding:10px 0 10px 16px; color:rgba(255,255,255,0.55); font-size:13px; text-decoration:none;">About Us</a>
+          <a href="our-people.html" style="display:block; padding:10px 0 10px 16px; color:rgba(255,255,255,0.55); font-size:13px; text-decoration:none;">Our People</a>
+        </div>
+      </details>
+      <details style="border-bottom:1px solid rgba(255,255,255,0.08);">
+        <summary style="padding:14px 0; color:rgba(255,255,255,0.8); font-size:14px; cursor:pointer; list-style:none; display:flex; justify-content:space-between;">Services <span>▾</span></summary>
+        <div style="padding-bottom:8px;">
+          <a href="practice-areas.html" style="display:block; padding:10px 0 10px 16px; color:rgba(255,255,255,0.55); font-size:13px; text-decoration:none;">Practice Areas</a>
+        </div>
+      </details>
+      <a href="contact.html" style="display:block; padding:14px 0; color:var(--gold-light); font-size:14px; font-weight:600; border-bottom:1px solid rgba(255,255,255,0.08); text-decoration:none;">Contact</a>
+      <a href="#form" class="btn-gold" style="width:100%; justify-content:center; margin-top:20px; font-size:12px;">Book Consultation</a>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════════════ SPLIT HERO ════════════════════════════════ -->
+<section class="split-hero">
+
+  <!-- LEFT: Dark navy panel with contact info -->
+  <div class="split-left">
+    <div class="split-left-content">
+
+      <!-- Breadcrumb -->
+      <div style="display:flex; align-items:center; gap:8px; margin-bottom:40px;">
+        <a href="index.html" style="font-size:11px; color:rgba(255,255,255,0.35); text-decoration:none; letter-spacing:0.08em; text-transform:uppercase; transition:color 0.2s;" onmouseover="this.style.color='var(--gold-light)'" onmouseout="this.style.color='rgba(255,255,255,0.35)'">Home</a>
+        <span style="color:rgba(255,255,255,0.2); font-size:11px;">/</span>
+        <span style="font-size:11px; color:var(--gold); letter-spacing:0.08em; text-transform:uppercase; font-weight:600;">Contact</span>
+      </div>
+
+      <!-- Big heading -->
+      <div style="margin-bottom:48px;">
+        <div style="display:flex; align-items:center; gap:12px; margin-bottom:24px;">
+          <div style="width:36px; height:2px; background:var(--gold);"></div>
+          <span style="font-size:10px; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold);">Get In Touch</span>
+        </div>
+        <h1 class="split-heading">
+          <span class="line-light">Contact</span>
+          <span class="line-gold">The Firm.</span>
+        </h1>
+        <p style="font-size:15px; color:rgba(255,255,255,0.55); line-height:1.8; margin-top:24px; max-width:340px;">
+          Excellence in legal counsel begins with a single conversation. Connect with our experts across Nigeria's commercial hubs.
+        </p>
+      </div>
+
+      <!-- Info strips -->
+      <div style="margin-bottom:40px;">
+
+        <div class="info-strip">
+          <div class="info-icon">📞</div>
+          <div>
+            <div class="info-label">24/7 Support Line</div>
+            <div class="info-value">
+              <a href="tel:+2348037242453">Ifeoma: +234 803 724 2453</a><br/>
+              <a href="tel:+2349121397097">Helen: +234 912 139 7097</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-strip">
+          <div class="info-icon">✉️</div>
+          <div>
+            <div class="info-label">Email Us</div>
+            <div class="info-value">
+              <a href="mailto:Clientsupport@oal.law">Clientsupport@oal.law</a><br/>
+              <a href="mailto:Mails@oal.law">Mails@oal.law</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-strip">
+          <div class="info-icon">📍</div>
+          <div>
+            <div class="info-label">Corporate Office</div>
+            <div class="info-value">10A Ilabere Street, Ikoyi, Lagos</div>
+          </div>
+        </div>
+
+        <div class="info-strip">
+          <div class="info-icon">🕐</div>
+          <div>
+            <div class="info-label">Office Hours</div>
+            <div class="info-value">Mon – Fri: 8:00am – 6:00pm<br/>Emergency support available 24/7</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Social links -->
+      <div style="display:flex; gap:10px;">
+        <a href="#" style="width:36px; height:36px; border:1px solid rgba(255,255,255,0.15); border-radius:2px; display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,0.5); font-size:13px; text-decoration:none; font-weight:700; transition:all 0.2s;" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.15)';this.style.color='rgba(255,255,255,0.5)'">in</a>
+        <a href="#" style="width:36px; height:36px; border:1px solid rgba(255,255,255,0.15); border-radius:2px; display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,0.5); font-size:13px; text-decoration:none; font-weight:700; transition:all 0.2s;" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.15)';this.style.color='rgba(255,255,255,0.5)'">tw</a>
+        <a href="#" style="width:36px; height:36px; border:1px solid rgba(255,255,255,0.15); border-radius:2px; display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,0.5); font-size:13px; text-decoration:none; font-weight:700; transition:all 0.2s;" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.15)';this.style.color='rgba(255,255,255,0.5)'">fb</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- RIGHT: Office image panel -->
+  <!-- NOTE TO STANLEY: Replace this image with the actual OAL office reception/lobby photo from oal.law when the site is back -->
+  <div class="split-right">
+    <img src="./images/adr-office-ikoyi.jpg"/>
+    <div class="split-right-overlay"></div>
+
+    <!-- Floating card on image -->
+    <div style="position:absolute; bottom:48px; right:40px; background:rgba(13,31,60,0.92); backdrop-filter:blur(12px); border:1px solid rgba(200,169,110,0.25); border-radius:4px; padding:24px 28px; max-width:260px;">
+      <div style="font-size:10px; font-weight:600; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:10px;">Response Time</div>
+      <div style="font-family:'Cormorant Garamond',serif; font-size:36px; font-weight:700; color:#fff; line-height:1;">24 hrs</div>
+      <div style="font-size:12px; color:rgba(255,255,255,0.55); margin-top:6px; line-height:1.5;">We respond to all inquiries within one business day — guaranteed.</div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div style="position:absolute; bottom:40px; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:6px;">
+      <div style="font-size:9px; letter-spacing:0.15em; color:rgba(255,255,255,0.35); text-transform:uppercase;">Scroll</div>
+      <div style="width:1px; height:36px; background:linear-gradient(to bottom, rgba(200,169,110,0.5), transparent);"></div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ═══════════════════ OFFICES ════════════════════════════════════ -->
+<section style="background:var(--off-white); padding:100px 0; border-bottom:1px solid var(--border);">
+  <div class="container">
+    <div style="text-align:center; max-width:520px; margin:0 auto 60px;" class="fade-up">
+      <div class="section-label">Our Locations</div>
+      <div class="gold-line" style="margin:0 auto 28px;"></div>
+      <h2 class="section-title">Find Us Across Nigeria</h2>
+      <p style="color:var(--text-mid); font-size:15px; line-height:1.8; margin-top:14px;">Four strategic offices positioned to serve clients across Nigeria's key commercial and governmental centres.</p>
+    </div>
+
+    <div style="display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:20px;" id="offices-grid">
+
+      <!-- Lagos HQ – larger -->
+      <div class="office-card hq fade-up">
+        <span class="office-badge hq-badge">Headquarters</span>
+        <div class="office-name">Ikoyi, Lagos</div>
+        <div class="office-addr">10A Ilabere Street,<br/>Ikoyi, Lagos, Nigeria.</div>
+        <div style="height:1px; background:var(--border); margin:16px 0;"></div>
+        <a href="tel:+2348037242453" class="office-contact" style="margin-bottom:4px;">📞 +234 803 724 2453</a>
+        <a href="tel:+2349121397097" class="office-contact" style="margin-bottom:4px;">📞 +234 912 139 7097</a>
+        <a href="mailto:Clientsupport@oal.law" class="office-contact">✉ Clientsupport@oal.law</a>
+        <div style="margin-top:20px;">
+          <a href="https://maps.google.com/?q=Ikoyi+Lagos" target="_blank" style="font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--navy); border:1px solid var(--border); padding:8px 16px; border-radius:2px; text-decoration:none; display:inline-flex; align-items:center; gap:6px; transition:all 0.2s;" onmouseover="this.style.background='var(--navy)';this.style.color='#fff'" onmouseout="this.style.background='';this.style.color='var(--navy)'">View on Maps →</a>
+        </div>
+      </div>
+
+      <!-- Apapa -->
+      <div class="office-card fade-up delay-1">
+        <span class="office-badge branch-badge">Branch Office</span>
+        <div class="office-name">Apapa, Lagos</div>
+        <div class="office-addr">Maritime Complex,<br/>34 Creek Road, Apapa,<br/>Lagos, Nigeria.</div>
+        <div style="height:1px; background:var(--border); margin:16px 0;"></div>
+        <a href="mailto:Clientsupport@oal.law" class="office-contact">✉ Clientsupport@oal.law</a>
+      </div>
+
+      <!-- Abuja -->
+      <div class="office-card fade-up delay-2">
+        <span class="office-badge branch-badge">Branch Office</span>
+        <div class="office-name">FCT, Abuja</div>
+        <div class="office-addr">Federal Capital Territory,<br/>Abuja, Nigeria.</div>
+        <div style="height:1px; background:var(--border); margin:16px 0;"></div>
+        <a href="mailto:Clientsupport@oal.law" class="office-contact">✉ Clientsupport@oal.law</a>
+      </div>
+
+      <!-- Port Harcourt -->
+      <div class="office-card fade-up delay-3">
+        <span class="office-badge branch-badge">Branch Office</span>
+        <div class="office-name">Port Harcourt</div>
+        <div class="office-addr">Port Harcourt,<br/>Rivers State, Nigeria.</div>
+        <div style="height:1px; background:var(--border); margin:16px 0;"></div>
+        <a href="mailto:Clientsupport@oal.law" class="office-contact">✉ Clientsupport@oal.law</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ CONTACT FORM + MAP ════════════════════════ -->
+<section style="background:#fff; padding:100px 0;" id="form">
+  <div class="container">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start;" id="form-grid">
+
+      <!-- Form -->
+      <div class="fade-up">
+        <div class="section-label">Drop Us a Line</div>
+        <div class="gold-line"></div>
+        <h2 class="section-title" style="margin-bottom:8px;">Have Any Questions?</h2>
+        <p style="color:var(--text-mid); font-size:15px; line-height:1.75; margin-bottom:40px;">Confidentiality and precision are our standard. Your inquiry is handled with the utmost discretion by our practice team.</p>
+
+        <form onsubmit="handleSubmit(event)">
+          <div class="form-group">
+            <label class="form-label">Full Name *</label>
+            <input type="text" class="form-input" placeholder="e.g. Ogbonna O. Balogun" required/>
+          </div>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+            <div class="form-group">
+              <label class="form-label">Email Address *</label>
+              <input type="email" class="form-input" placeholder="ogbonnabalogun@company.com" required/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Phone Number</label>
+              <input type="tel" class="form-input" placeholder="+234 000 000 0000"/>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Practice Area of Interest</label>
+            <select class="form-input">
+              <option value="" disabled selected>Select a practice area...</option>
+              <option>Energy &amp; Natural Resources</option>
+              <option>Corporate &amp; Commercial Law</option>
+              <option>Maritime &amp; Aviation</option>
+              <option>Litigation &amp; ADR</option>
+              <option>Debt Recovery &amp; Insolvency</option>
+              <option>Space Law</option>
+              <option>Sports, Entertainment &amp; Technology</option>
+              <option>Governance Advisory</option>
+              <option>Environmental Justice</option>
+              <option>Real Estate &amp; Property Law</option>
+              <option>Medical Negligence &amp; Healthcare</option>
+              <option>Alternative Dispute Resolution</option>
+              <option>General Inquiry</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Your Message *</label>
+            <textarea class="form-input" rows="5" placeholder="Briefly describe your legal inquiry or matter..." required style="resize:vertical;"></textarea>
+          </div>
+
+          <!-- Preferred contact method -->
+          <div class="form-group">
+            <label class="form-label">Preferred Contact Method</label>
+            <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:8px;">
+              <label style="display:flex; align-items:center; gap:8px; cursor:pointer; font-size:13px; color:var(--text-mid);">
+                <input type="radio" name="contact_pref" value="email" checked style="accent-color:var(--navy);"/> Email
+              </label>
+              <label style="display:flex; align-items:center; gap:8px; cursor:pointer; font-size:13px; color:var(--text-mid);">
+                <input type="radio" name="contact_pref" value="phone" style="accent-color:var(--navy);"/> Phone Call
+              </label>
+              <label style="display:flex; align-items:center; gap:8px; cursor:pointer; font-size:13px; color:var(--text-mid);">
+                <input type="radio" name="contact_pref" value="virtual" style="accent-color:var(--navy);"/> Virtual Meeting
+              </label>
+              <label style="display:flex; align-items:center; gap:8px; cursor:pointer; font-size:13px; color:var(--text-mid);">
+                <input type="radio" name="contact_pref" value="inperson" style="accent-color:var(--navy);"/> In-Person Visit
+              </label>
+            </div>
+          </div>
+
+          <div id="form-success" style="display:none; background:var(--gold-pale); border:1px solid var(--gold); border-radius:2px; padding:16px 20px; margin-bottom:20px; font-size:14px; color:var(--navy);">
+            ✓ Thank you. Your inquiry has been received. We'll respond within 24 hours.
+          </div>
+
+          <button type="submit" class="btn-gold" style="margin-top:8px;">
+            Submit Inquiry →
+          </button>
+
+          <p style="font-size:11px; color:var(--text-light); text-align:center; margin-top:14px;">Your information is handled with strict confidentiality per our <a href="#" style="color:var(--gold); text-decoration:none;">Privacy Policy</a>.</p>
+        </form>
+      </div>
+
+      <!-- Map + Quick contact -->
+      <div class="fade-up delay-1">
+
+        <!-- Map image -->
+        <!-- NOTE TO STANLEY: Optionally embed a Google Maps iframe here for live map. 
+             To do this replace the img tag below with:
+             <iframe src="https://www.google.com/maps/embed?pb=!1m18!..." width="100%" height="380" style="border:0; border-radius:2px;" allowfullscreen loading="lazy"></iframe>
+        -->
+        <div style="position:relative; border-radius:4px; overflow:hidden; height:380px; margin-bottom:36px; box-shadow:0 20px 48px rgba(13,31,60,0.1);">
+          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXBWl0fogX3jqB1JVlSNHlcBAQ9-P9RtuTOsVVQsXDqCI0ErtqwP345BMJ9wK7OCZAKBBdTFb0ICSqZpotHigcTf5M3miU2T0fAAaPB_7Bpjs-Rh9JuOwX9u1WUcUJOwYdalgXZnGrEqx5BqI9voK4FPxhQsgUuDmZEVL6pf_BlCjovJVHoMOnAuHvzNluowyyjiJw7EhnqKTHFjVIP5TWeZkkX4alPlK5L8-gcAk1dFdPsL-stfgXf5p5WKbZ-XaxK4qTNYNZOV4w"
+            alt="OAL Office Location - Lagos"
+            style="width:100%; height:100%; object-fit:cover; filter:brightness(0.85) contrast(1.1) saturate(0.8);"/>
+          <!-- Blue tint overlay -->
+          <div style="position:absolute; inset:0; background:rgba(13,31,60,0.25); mix-blend-mode:multiply;"></div>
+          <!-- Pin -->
+          <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); text-align:center;">
+            <div style="width:48px; height:48px; background:var(--red); border-radius:50% 50% 50% 0; transform:rotate(-45deg); margin:0 auto; box-shadow:0 8px 24px rgba(176,28,46,0.4);"></div>
+            <div style="background:rgba(13,31,60,0.9); color:#fff; font-size:12px; font-weight:600; padding:6px 14px; border-radius:2px; margin-top:12px; white-space:nowrap; backdrop-filter:blur(8px);">OAL – Ikoyi, Lagos</div>
+          </div>
+          <!-- Open maps button -->
+          <div style="position:absolute; bottom:16px; right:16px;">
+            <a href="https://maps.google.com/?q=10A+Ilabere+Street+Ikoyi+Lagos" target="_blank" style="background:#fff; color:var(--navy); font-size:11px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; padding:8px 16px; border-radius:2px; text-decoration:none; display:inline-flex; align-items:center; gap:6px; box-shadow:0 4px 16px rgba(0,0,0,0.15); transition:all 0.2s;" onmouseover="this.style.background='var(--navy)';this.style.color='#fff'" onmouseout="this.style.background='#fff';this.style.color='var(--navy)'">Open in Google Maps ↗</a>
+          </div>
+        </div>
+
+        <!-- Quick action cards -->
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+          <a href="tel:+2348037242453" style="background:var(--navy); border-radius:2px; padding:20px; text-decoration:none; display:block; transition:background 0.2s;" onmouseover="this.style.background='var(--navy-mid)'" onmouseout="this.style.background='var(--navy)'">
+            <div style="font-size:22px; margin-bottom:8px;">📞</div>
+            <div style="font-size:10px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); margin-bottom:4px;">Call Us Now</div>
+            <div style="font-size:13px; color:rgba(255,255,255,0.75); line-height:1.4;">+234 803 724 2453</div>
+          </a>
+          <a href="mailto:Clientsupport@oal.law" style="background:var(--off-white); border:1px solid var(--border); border-radius:2px; padding:20px; text-decoration:none; display:block; transition:all 0.2s;" onmouseover="this.style.background='var(--gold-pale)'" onmouseout="this.style.background='var(--off-white)'">
+            <div style="font-size:22px; margin-bottom:8px;">✉️</div>
+            <div style="font-size:10px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); margin-bottom:4px;">Email Us</div>
+            <div style="font-size:13px; color:var(--text-mid); line-height:1.4;">Clientsupport@oal.law</div>
+          </a>
+          <a href="#" style="background:var(--off-white); border:1px solid var(--border); border-radius:2px; padding:20px; text-decoration:none; display:block; transition:all 0.2s;" onmouseover="this.style.background='var(--gold-pale)'" onmouseout="this.style.background='var(--off-white)'">
+            <div style="font-size:22px; margin-bottom:8px;">🎥</div>
+            <div style="font-size:10px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); margin-bottom:4px;">Virtual Meeting</div>
+            <div style="font-size:13px; color:var(--text-mid); line-height:1.4;">Schedule a Zoom call</div>
+          </a>
+          <a href="https://maps.google.com/?q=10A+Ilabere+Street+Ikoyi+Lagos" target="_blank" style="background:var(--off-white); border:1px solid var(--border); border-radius:2px; padding:20px; text-decoration:none; display:block; transition:all 0.2s;" onmouseover="this.style.background='var(--gold-pale)'" onmouseout="this.style.background='var(--off-white)'">
+            <div style="font-size:22px; margin-bottom:8px;">📍</div>
+            <div style="font-size:10px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); margin-bottom:4px;">Visit Us</div>
+            <div style="font-size:13px; color:var(--text-mid); line-height:1.4;">Get directions →</div>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ FAQ ════════════════════════════════════════ -->
+<section style="background:var(--off-white); padding:100px 0;">
+  <div class="container">
+    <div style="display:grid; grid-template-columns:1fr 2fr; gap:80px; align-items:start;" id="faq-grid">
+
+      <!-- Left label -->
+      <div class="fade-up" style="position:sticky; top:120px;">
+        <div class="section-label">Common Questions</div>
+        <div class="gold-line"></div>
+        <h2 class="section-title" style="margin-bottom:20px;">Frequently Asked</h2>
+        <p style="color:var(--text-mid); font-size:15px; line-height:1.75; margin-bottom:32px;">Can't find what you're looking for? Our team is always ready to assist.</p>
+        <a href="mailto:Clientsupport@oal.law" class="btn-outline-navy" style="width:auto; display:inline-flex;">Email Us Directly</a>
+      </div>
+
+      <!-- FAQ items -->
+      <div class="fade-up delay-1">
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            How do I book an initial consultation?
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer">Fill out the contact form on this page or call our headquarters directly. Our practice administrator will review your inquiry and pair you with the most relevant partner within 24 hours. You can also request a virtual meeting if you prefer.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            What are your consultation fees?
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer">Fees vary depending on the complexity of the matter and the seniority of the attorney involved. A standard engagement fee is discussed during the preliminary call. We are transparent about all fees upfront — there are no hidden charges.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            Do you offer virtual consultations?
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer">Yes. We conduct high-level briefings via secure video conferencing platforms for international clients and those unable to visit our physical offices. Simply select "Virtual Meeting" as your preferred contact method in the form above.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            What documents should I bring to my consultation?
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer">To maximise the value of our time together, please provide all relevant contracts, correspondence, or court documents via our secure client portal before the meeting. Our team will review them in advance so we can hit the ground running.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            How quickly will I receive a response?
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer">All inquiries submitted via the form or by email are acknowledged within 24 hours on business days. For urgent matters, we strongly recommend calling our 24/7 support line: +234 803 724 2453.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            Is my information kept confidential?
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer">Absolutely. Attorney-client confidentiality is fundamental to our practice. All information shared with OAL — whether via form, email, or phone — is treated with the strictest professional discretion in accordance with Nigerian Bar Association rules.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ NEWSLETTER STRIP ═════════════════════════ -->
+<section style="background:var(--navy); padding:72px 0;">
+  <div class="container">
+    <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:32px;" class="fade-up">
+      <div>
+        <div style="font-size:11px; font-weight:600; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold); margin-bottom:10px;">Stay Informed</div>
+        <h3 style="font-family:'Cormorant Garamond',serif; font-size:clamp(24px,3vw,38px); font-weight:700; color:#fff; line-height:1.15;">
+          Subscribe to Our Legal Insights
+        </h3>
+        <p style="font-size:14px; color:rgba(255,255,255,0.55); margin-top:8px;">Latest articles, regulatory updates, and firm news — delivered to your inbox.</p>
+      </div>
+      <div style="display:flex; gap:0; min-width:360px; flex:1; max-width:480px;">
+        <input type="email" placeholder="Enter your email address" style="flex:1; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); border-right:none; color:#fff; font-family:'DM Sans',sans-serif; font-size:14px; padding:14px 18px; border-radius:2px 0 0 2px; outline:none; transition:border-color 0.2s;" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'" oninput="this.style.color='#fff'"/>
+        <button style="background:var(--gold); color:var(--navy); font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; padding:14px 24px; border:none; border-radius:0 2px 2px 0; cursor:pointer; white-space:nowrap; transition:background 0.2s;" onmouseover="this.style.background='var(--gold-light)'" onmouseout="this.style.background='var(--gold)'">Subscribe →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ FOOTER ════════════════════════════════════ -->
+<footer class="footer">
+  <div class="container">
+    <div style="display:grid; gap:48px; padding-bottom:60px; border-bottom:1px solid rgba(255,255,255,0.07);" id="footer-grid">
+      <div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:32px; font-weight:700; margin-bottom:4px; line-height:1;">
+          <span style="color:var(--red)">OA</span><span style="color:var(--gold)">L</span>
+        </div>
+        <div style="font-size:9px; letter-spacing:0.22em; color:rgba(255,255,255,0.35); text-transform:uppercase; font-weight:500; margin-bottom:20px;">Olisa Agbakoba Legal</div>
+        <p style="font-size:13px; color:rgba(255,255,255,0.45); line-height:1.75; max-width:280px; margin-bottom:28px;">A multi-specialist law firm providing comprehensive legal services with a focus on commercial law, energy, arbitration, and policy advocacy.</p>
+        <div style="display:flex; gap:12px;">
+          <a href="#" style="width:36px; height:36px; border:1px solid rgba(255,255,255,0.15); border-radius:2px; display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,0.5); font-size:14px; text-decoration:none; transition:all 0.2s;" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.15)';this.style.color='rgba(255,255,255,0.5)'">in</a>
+          <a href="#" style="width:36px; height:36px; border:1px solid rgba(255,255,255,0.15); border-radius:2px; display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,0.5); font-size:14px; text-decoration:none; transition:all 0.2s;" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.15)';this.style.color='rgba(255,255,255,0.5)'">tw</a>
+          <a href="#" style="width:36px; height:36px; border:1px solid rgba(255,255,255,0.15); border-radius:2px; display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,0.5); font-size:14px; text-decoration:none; transition:all 0.2s;" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.15)';this.style.color='rgba(255,255,255,0.5)'">fb</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-heading">Quick Links</div>
+        <a href="index.html" class="footer-link">Home</a>
+        <a href="about.html" class="footer-link">About Us</a>
+        <a href="our-people.html" class="footer-link">Our People</a>
+        <a href="practice-areas.html" class="footer-link">Practice Areas</a>
+        <a href="#" class="footer-link">OAL Academy</a>
+        <a href="#" class="footer-link">Insights</a>
+        <a href="contact.html" class="footer-link">Contact</a>
+      </div>
+      <div>
+        <div class="footer-heading">Legal</div>
+        <a href="#" class="footer-link">Privacy Policy</a>
+        <a href="#" class="footer-link">Terms of Use</a>
+        <a href="#" class="footer-link">Disclaimer</a>
+        <a href="#" class="footer-link">Cookies Policy</a>
+        <a href="#" class="footer-link">Sitemap</a>
+      </div>
+      <div>
+        <div class="footer-heading">Our Offices</div>
+        <div style="margin-bottom:16px;">
+          <div style="font-size:11px; color:var(--gold); font-weight:600; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:4px;">Lagos (HQ)</div>
+          <div style="font-size:13px; color:rgba(255,255,255,0.45); line-height:1.6;">10A Ilabere Street,<br/>Ikoyi, Lagos</div>
+        </div>
+        <div style="margin-bottom:16px;">
+          <div style="font-size:11px; color:var(--gold); font-weight:600; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:4px;">Abuja</div>
+          <div style="font-size:13px; color:rgba(255,255,255,0.45); line-height:1.6;">FCT, Abuja</div>
+        </div>
+        <div>
+          <div style="font-size:11px; color:var(--gold); font-weight:600; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:4px;">Port Harcourt</div>
+          <div style="font-size:13px; color:rgba(255,255,255,0.45); line-height:1.6;">Port Harcourt, Rivers State</div>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex; justify-content:space-between; align-items:center; padding-top:28px; flex-wrap:wrap; gap:12px;">
+      <p style="font-size:12px; color:rgba(255,255,255,0.3);">© 2025 Olisa Agbakoba Legal. All Rights Reserved.</p>
+      <p style="font-size:12px; color:rgba(255,255,255,0.3);">Designed with excellence for OAL.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════════ SCRIPTS ══════════════════════════════════ -->
+<script>
+  function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
+
+  // Scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // FAQ accordion
+  function toggleFAQ(el) {
+    const item = el.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  // Form submit handler
+  function handleSubmit(e) {
+    e.preventDefault();
+    const success = document.getElementById('form-success');
+    success.style.display = 'block';
+    e.target.querySelectorAll('input, textarea, select').forEach(f => f.value = '');
+    setTimeout(() => { success.style.display = 'none'; }, 6000);
+  }
+
+  // Responsive grids
+  function applyResponsive() {
+    const w = window.innerWidth;
+
+    const offG = document.getElementById('offices-grid');
+    if (offG) offG.style.gridTemplateColumns = w < 640 ? '1fr' : w < 900 ? '1fr 1fr' : '2fr 1fr 1fr 1fr';
+
+    const fG = document.getElementById('form-grid');
+    if (fG) fG.style.gridTemplateColumns = w < 900 ? '1fr' : '1fr 1fr';
+
+    const faqG = document.getElementById('faq-grid');
+    if (faqG) faqG.style.gridTemplateColumns = w < 900 ? '1fr' : '1fr 2fr';
+
+    const ftG = document.getElementById('footer-grid');
+    if (ftG) ftG.style.gridTemplateColumns = w < 768 ? '1fr' : w < 1024 ? '1fr 1fr' : '2fr 1fr 1fr 1fr';
+
+    // Split hero on mobile
+    const sh = document.querySelector('.split-hero');
+    if (sh) sh.style.gridTemplateColumns = w < 900 ? '1fr' : '1fr 1fr';
+  }
+
+  applyResponsive();
+  window.addEventListener('resize', applyResponsive);
+</script>
+
+</body>
+</html>
