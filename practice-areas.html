@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Practice Areas | Olisa Agbakoba Legal – OAL</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --navy: #0d1f3c;
+    --navy-mid: #183060;
+    --gold: #c8a96e;
+    --gold-light: #dfc28d;
+    --gold-pale: #f5edd9;
+    --red: #b01c2e;
+    --off-white: #f7f5f0;
+    --text-dark: #0d1f3c;
+    --text-mid: #4a5568;
+    --text-light: #718096;
+    --border: #e8e2d6;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'DM Sans', sans-serif; background: #fff; color: var(--text-dark); overflow-x: hidden; }
+  .serif { font-family: 'Cormorant Garamond', serif; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+
+  /* ── NAVBAR ── */
+  #navbar {
+    position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
+    background: rgba(13,31,60,0.97);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 4px 30px rgba(0,0,0,0.25);
+  }
+  .nav-logo-main { font-family: 'Cormorant Garamond', serif; }
+  .nav-link {
+    position: relative; color: rgba(255,255,255,0.88);
+    font-size: 13px; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase;
+    cursor: pointer; transition: color 0.2s; white-space: nowrap; text-decoration: none;
+  }
+  .nav-link:hover { color: var(--gold-light); }
+  .nav-link.active { color: #fff; border-bottom: 2px solid var(--red); padding-bottom: 2px; }
+  .nav-item { position: relative; }
+  .dropdown {
+    position: absolute; top: calc(100% + 14px); left: 0;
+    background: var(--navy); border-top: 2px solid var(--gold);
+    min-width: 210px; border-radius: 0 0 6px 6px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    opacity: 0; visibility: hidden; transform: translateY(8px);
+    transition: all 0.25s ease; z-index: 200;
+  }
+  .nav-item:hover > .dropdown, .dropdown:hover { opacity: 1; visibility: visible; transform: translateY(0); }
+  .dropdown a {
+    display: block; padding: 11px 20px; font-size: 13px;
+    color: rgba(255,255,255,0.78); letter-spacing: 0.02em;
+    transition: all 0.2s; border-bottom: 1px solid rgba(255,255,255,0.06); text-decoration: none;
+  }
+  .dropdown a:last-child { border-bottom: none; }
+  .dropdown a:hover { color: var(--gold-light); background: rgba(200,169,110,0.08); padding-left: 26px; }
+  .dropdown a.active-sub { color: var(--gold-light); }
+  .chev { display: inline-block; margin-left: 4px; font-size: 10px; vertical-align: middle; transition: transform 0.2s; }
+  .nav-item:hover .chev { transform: rotate(180deg); }
+  #mobileMenu { max-height: 0; overflow: hidden; transition: max-height 0.45s cubic-bezier(0.4,0,0.2,1); background: var(--navy); }
+  #mobileMenu.open { max-height: 900px; }
+  .hamburger { background: none; border: none; cursor: pointer; padding: 4px; }
+  .hamburger span { display: block; width: 22px; height: 2px; background: #fff; margin: 5px 0; }
+  @media (max-width: 900px) { .hidden-mobile { display: none !important; } .show-mobile { display: block !important; } }
+  @media (min-width: 901px) { .hidden-mobile { display: flex !important; } .show-mobile { display: none !important; } }
+
+  /* ── PAGE HERO – Typographic ── */
+  .page-hero {
+    background: var(--off-white);
+    padding: 160px 0 0;
+    position: relative; overflow: hidden;
+    border-bottom: 1px solid var(--border);
+  }
+  .page-hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 60px 60px;
+    opacity: 0.5; z-index: 0;
+  }
+  .page-hero::after {
+    content: 'LAW';
+    position: absolute; right: -10px; bottom: -60px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(160px, 22vw, 320px);
+    font-weight: 700; line-height: 1;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(13,31,60,0.06);
+    pointer-events: none; user-select: none; z-index: 0;
+  }
+  .page-hero-content { position: relative; z-index: 1; }
+  @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  #ticker-track:hover { animation-play-state: paused; }
+
+  /* ── SHARED ── */
+  .section-label { font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
+  .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(30px, 3.5vw, 50px); font-weight: 700; line-height: 1.12; color: var(--navy); }
+  .gold-line { width: 48px; height: 2px; background: var(--gold); margin-bottom: 28px; }
+
+  /* ── BUTTONS ── */
+  .btn-gold {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--gold); color: var(--navy);
+    font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 14px 28px; border-radius: 2px; border: none; cursor: pointer;
+    transition: background 0.2s, transform 0.2s, box-shadow 0.2s; text-decoration: none;
+  }
+  .btn-gold:hover { background: var(--gold-light); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(200,169,110,0.3); }
+  .btn-outline-navy {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: transparent; color: var(--navy);
+    font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 13px 28px; border-radius: 2px; border: 1px solid var(--navy);
+    cursor: pointer; transition: all 0.2s; text-decoration: none;
+  }
+  .btn-outline-navy:hover { background: var(--navy); color: #fff; }
+  .btn-outline-white {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: transparent; color: #fff;
+    font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 13px 28px; border-radius: 2px; border: 1px solid rgba(255,255,255,0.4);
+    cursor: pointer; transition: all 0.2s; text-decoration: none;
+  }
+  .btn-outline-white:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.7); }
+
+  /* ── SCROLL ANIMATION ── */
+  .fade-up { opacity: 0; transform: translateY(32px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+  .fade-up.delay-1 { transition-delay: 0.1s; }
+  .fade-up.delay-2 { transition-delay: 0.2s; }
+  .fade-up.delay-3 { transition-delay: 0.3s; }
+
+  /* ── FEATURED CARD (hero area card) ── */
+  .featured-card {
+    position: relative; border-radius: 4px; overflow: hidden;
+    min-height: 480px; display: flex; flex-direction: column; justify-content: flex-end;
+    cursor: pointer;
+  }
+  .featured-card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s ease; }
+  .featured-card:hover img { transform: scale(1.05); }
+  .featured-card-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(8,18,40,0.95) 0%, rgba(8,18,40,0.4) 55%, transparent 100%);
+    transition: background 0.3s;
+  }
+  .featured-card:hover .featured-card-overlay { background: linear-gradient(to top, rgba(8,18,40,0.98) 0%, rgba(8,18,40,0.55) 60%, rgba(8,18,40,0.1) 100%); }
+  .featured-card-body { position: relative; z-index: 1; padding: 40px; }
+  .featured-badge {
+    display: inline-block; background: var(--red); color: #fff;
+    font-size: 9px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
+    padding: 5px 12px; border-radius: 2px; margin-bottom: 14px;
+  }
+  .featured-title { font-family: 'Cormorant Garamond', serif; font-size: 34px; font-weight: 700; color: #fff; line-height: 1.15; margin-bottom: 12px; }
+  .featured-desc { font-size: 14px; color: rgba(255,255,255,0.7); line-height: 1.7; max-width: 480px; margin-bottom: 20px; }
+  .featured-arrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--gold-light); opacity: 0; transform: translateX(-8px);
+    transition: all 0.3s ease;
+  }
+  .featured-card:hover .featured-arrow { opacity: 1; transform: translateX(0); }
+
+  /* ── NAVY ACCENT CARD ── */
+  .navy-card {
+    background: var(--navy); border-radius: 4px; padding: 40px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    min-height: 480px;
+  }
+  .navy-card-icon { font-size: 40px; margin-bottom: 20px; }
+  .navy-card-title { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 700; color: #fff; line-height: 1.2; margin-bottom: 14px; }
+  .navy-card-desc { font-size: 14px; color: rgba(255,255,255,0.65); line-height: 1.75; margin-bottom: 24px; }
+  .navy-card-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .navy-card-list li { display: flex; align-items: center; gap: 10px; font-size: 13px; color: rgba(255,255,255,0.65); }
+  .navy-card-list li::before { content: ''; width: 6px; height: 6px; background: var(--gold); border-radius: 50%; flex-shrink: 0; }
+
+  /* ── STANDARD PRACTICE CARD ── */
+  .practice-card {
+    background: #fff; border: 1px solid var(--border); border-radius: 4px;
+    padding: 36px 32px; display: flex; flex-direction: column;
+    border-top: 3px solid transparent;
+    transition: border-top-color 0.3s, box-shadow 0.3s, transform 0.3s;
+    cursor: pointer;
+  }
+  .practice-card:hover { border-top-color: var(--gold); box-shadow: 0 20px 48px rgba(13,31,60,0.09); transform: translateY(-4px); }
+  .practice-card-icon { font-size: 36px; margin-bottom: 18px; }
+  .practice-card-title { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 700; color: var(--navy); margin-bottom: 12px; line-height: 1.2; }
+  .practice-card-desc { font-size: 14px; color: var(--text-mid); line-height: 1.75; flex: 1; margin-bottom: 20px; }
+  .practice-card-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; }
+  .practice-tag {
+    font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--navy); background: var(--off-white); border: 1px solid var(--border);
+    padding: 4px 10px; border-radius: 2px;
+  }
+  .practice-card-link {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--gold); text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+    transition: gap 0.2s, color 0.2s;
+  }
+  .practice-card:hover .practice-card-link { gap: 10px; color: var(--navy); }
+
+  /* ── WIDE CARD (Litigation) ── */
+  .wide-card {
+    background: var(--off-white); border-radius: 4px; overflow: hidden;
+    border-left: 4px solid var(--navy);
+    display: grid; grid-template-columns: 1fr 1fr;
+  }
+  .wide-card-img { width: 100%; height: 100%; object-fit: cover; min-height: 320px; }
+  .wide-card-body { padding: 48px 44px; display: flex; flex-direction: column; justify-content: center; }
+  .wide-card-tag { font-size: 10px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--red); margin-bottom: 16px; }
+  .wide-card-title { font-family: 'Cormorant Garamond', serif; font-size: 30px; font-weight: 700; color: var(--navy); line-height: 1.15; margin-bottom: 16px; }
+  .wide-card-desc { font-size: 14px; color: var(--text-mid); line-height: 1.8; margin-bottom: 28px; }
+  .wide-card-btns { display: flex; gap: 10px; flex-wrap: wrap; }
+  .wide-tag-btn {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--navy); background: #fff; border: 1px solid var(--border);
+    padding: 8px 16px; border-radius: 2px; cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .wide-tag-btn:hover { background: var(--navy); color: #fff; border-color: var(--navy); }
+
+  /* ── FOOTER ── */
+  .footer { background: #080f1e; padding: 80px 0 40px; }
+  .footer-link { color: rgba(255,255,255,0.5); font-size: 13px; transition: color 0.2s; display: block; margin-bottom: 10px; text-decoration: none; }
+  .footer-link:hover { color: var(--gold-light); }
+  .footer-heading { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; }
+
+  @media (max-width: 768px) {
+    .container { padding: 0 20px; }
+    .page-hero { padding: 130px 0 70px; }
+    .wide-card { grid-template-columns: 1fr; }
+    .wide-card-img { min-height: 220px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════ NAVBAR ════════════════════════════════════ -->
+<header id="navbar">
+  <div class="container">
+    <div style="display:flex; align-items:center; justify-content:space-between; padding:20px 0;">
+      <a href="index.html" style="text-decoration:none; display:flex; flex-direction:column; gap:2px;">
+        <div class="nav-logo-main" style="font-size:28px; font-weight:700; line-height:1; letter-spacing:0.02em;">
+          <span style="color:var(--red)">OA</span><span style="color:var(--gold)">L</span>
+        </div>
+        <div style="font-size:8.5px; letter-spacing:0.22em; color:rgba(255,255,255,0.55); text-transform:uppercase; font-weight:500;">Olisa Agbakoba Legal</div>
+      </a>
+
+      <nav style="display:flex; align-items:center; gap:36px;" class="hidden-mobile">
+        <a href="index.html" class="nav-link">Home</a>
+        <div class="nav-item">
+          <span class="nav-link">About <span class="chev">▾</span></span>
+          <div class="dropdown">
+            <a href="about.html">About Us</a>
+            <a href="our-people.html">Our People</a>
+            <a href="#">Careers</a>
+            <a href="#">Responsibility</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <span class="nav-link active">Services <span class="chev">▾</span></span>
+          <div class="dropdown">
+            <a href="practice-areas.html" class="active-sub">Practice Areas</a>
+            <a href="#">Sectors</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <span class="nav-link">Academy <span class="chev">▾</span></span>
+          <div class="dropdown">
+            <a href="#">Programs</a>
+            <a href="#">Publications</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <span class="nav-link">Insights <span class="chev">▾</span></span>
+          <div class="dropdown">
+            <a href="#">Articles</a>
+            <a href="#">News</a>
+            <a href="#">Publications</a>
+            <a href="#">Videos</a>
+            <a href="#">Regulatory Updates</a>
+          </div>
+        </div>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+
+      <a href="#" class="btn-gold hidden-mobile" style="font-size:11px; padding:11px 22px;">Book Consultation</a>
+      <button class="hamburger show-mobile" onclick="toggleMenu()" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <div id="mobileMenu">
+    <div style="padding:8px 20px 24px;">
+      <a href="index.html" style="display:block; padding:14px 0; color:rgba(255,255,255,0.8); font-size:14px; border-bottom:1px solid rgba(255,255,255,0.08); text-decoration:none;">Home</a>
+      <details style="border-bottom:1px solid rgba(255,255,255,0.08);">
+        <summary style="padding:14px 0; color:rgba(255,255,255,0.8); font-size:14px; cursor:pointer; list-style:none; display:flex; justify-content:space-between;">About <span>▾</span></summary>
+        <div style="padding-bottom:8px;">
+          <a href="about.html" style="display:block; padding:10px 0 10px 16px; color:rgba(255,255,255,0.55); font-size:13px; text-decoration:none;">About Us</a>
+          <a href="our-people.html" style="display:block; padding:10px 0 10px 16px; color:rgba(255,255,255,0.55); font-size:13px; text-decoration:none;">Our People</a>
+          <a href="#" style="display:block; padding:10px 0 10px 16px; color:rgba(255,255,255,0.55); font-size:13px; text-decoration:none;">Careers</a>
+        </div>
+      </details>
+      <details style="border-bottom:1px solid rgba(255,255,255,0.08);" open>
+        <summary style="padding:14px 0; color:#fff; font-size:14px; cursor:pointer; list-style:none; display:flex; justify-content:space-between;">Services <span>▾</span></summary>
+        <div style="padding-bottom:8px;">
+          <a href="practice-areas.html" style="display:block; padding:10px 0 10px 16px; color:var(--gold-light); font-size:13px; text-decoration:none;">Practice Areas</a>
+          <a href="#" style="display:block; padding:10px 0 10px 16px; color:rgba(255,255,255,0.55); font-size:13px; text-decoration:none;">Sectors</a>
+        </div>
+      </details>
+      <details style="border-bottom:1px solid rgba(255,255,255,0.08);">
+        <summary style="padding:14px 0; color:rgba(255,255,255,0.8); font-size:14px; cursor:pointer; list-style:none; display:flex; justify-content:space-between;">Insights <span>▾</span></summary>
+        <div style="padding-bottom:8px;">
+          <a href="#" style="display:block; padding:10px 0 10px 16px; color:rgba(255,255,255,0.55); font-size:13px; text-decoration:none;">Articles</a>
+          <a href="#" style="display:block; padding:10px 0 10px 16px; color:rgba(255,255,255,0.55); font-size:13px; text-decoration:none;">News</a>
+        </div>
+      </details>
+      <a href="contact.html" style="display:block; padding:14px 0; color:rgba(255,255,255,0.8); font-size:14px; border-bottom:1px solid rgba(255,255,255,0.08); text-decoration:none;">Contact</a>
+      <a href="#" class="btn-gold" style="width:100%; justify-content:center; margin-top:20px; font-size:12px;">Book Consultation</a>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════════════ PAGE HERO – Typographic ══════════════════ -->
+<section class="page-hero">
+  <div class="container page-hero-content" style="padding-bottom:0;">
+
+    <!-- Breadcrumb -->
+    <div style="display:flex; align-items:center; gap:8px; margin-bottom:48px;">
+      <a href="index.html" style="font-size:12px; color:var(--text-light); text-decoration:none; letter-spacing:0.06em; text-transform:uppercase; transition:color 0.2s;" onmouseover="this.style.color='var(--navy)'" onmouseout="this.style.color='var(--text-light)'">Home</a>
+      <span style="color:var(--border); font-size:12px;">/</span>
+      <span style="font-size:12px; color:var(--gold); letter-spacing:0.06em; text-transform:uppercase; font-weight:600;">Practice Areas</span>
+    </div>
+
+    <!-- Two-column editorial layout -->
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:flex-end; padding-bottom:56px;" id="hero-inner">
+
+      <!-- Left: giant serif title -->
+      <div>
+        <div style="display:flex; align-items:center; gap:16px; margin-bottom:28px;">
+          <div style="width:48px; height:2px; background:var(--gold);"></div>
+          <span style="font-size:11px; font-weight:600; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold);">Our Expertise</span>
+        </div>
+        <h1 style="font-family:'Cormorant Garamond',serif; font-size:clamp(52px,7vw,96px); font-weight:700; color:var(--navy); line-height:0.92; letter-spacing:-0.02em;">
+          Practice<br/><em style="font-style:italic; color:var(--gold);">Areas.</em>
+        </h1>
+      </div>
+
+      <!-- Right: count + description + pills -->
+      <div style="padding-bottom:6px;">
+        <div style="display:flex; align-items:center; gap:16px; margin-bottom:24px;">
+          <div style="background:var(--navy); color:var(--gold); font-family:'Cormorant Garamond',serif; font-size:52px; font-weight:700; line-height:1; padding:12px 20px; border-radius:2px;">12</div>
+          <div>
+            <div style="font-size:14px; font-weight:600; color:var(--navy);">Specialised</div>
+            <div style="font-size:14px; color:var(--text-mid);">Practice Groups</div>
+          </div>
+        </div>
+        <p style="font-size:15px; color:var(--text-mid); line-height:1.8; margin-bottom:28px; border-left:3px solid var(--gold); padding-left:18px;">
+          With a legacy spanning decades, OAL provides authoritative legal counsel across the most complex sectors of the Nigerian and global economy. We don't just advise — we architect outcomes that scale.
+        </p>
+        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+          <a href="#featured" style="font-size:11px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--navy); border:1px solid var(--border); background:#fff; padding:7px 14px; border-radius:2px; text-decoration:none; transition:all 0.2s;" onmouseover="this.style.background='var(--navy)';this.style.color='#fff';this.style.borderColor='var(--navy)'" onmouseout="this.style.background='#fff';this.style.color='var(--navy)';this.style.borderColor='var(--border)'">Energy</a>
+          <a href="#grid" style="font-size:11px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--navy); border:1px solid var(--border); background:#fff; padding:7px 14px; border-radius:2px; text-decoration:none; transition:all 0.2s;" onmouseover="this.style.background='var(--navy)';this.style.color='#fff';this.style.borderColor='var(--navy)'" onmouseout="this.style.background='#fff';this.style.color='var(--navy)';this.style.borderColor='var(--border)'">Corporate Law</a>
+          <a href="#grid" style="font-size:11px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--navy); border:1px solid var(--border); background:#fff; padding:7px 14px; border-radius:2px; text-decoration:none; transition:all 0.2s;" onmouseover="this.style.background='var(--navy)';this.style.color='#fff';this.style.borderColor='var(--navy)'" onmouseout="this.style.background='#fff';this.style.color='var(--navy)';this.style.borderColor='var(--border)'">Maritime</a>
+          <a href="#grid" style="font-size:11px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--navy); border:1px solid var(--border); background:#fff; padding:7px 14px; border-radius:2px; text-decoration:none; transition:all 0.2s;" onmouseover="this.style.background='var(--navy)';this.style.color='#fff';this.style.borderColor='var(--navy)'" onmouseout="this.style.background='#fff';this.style.color='var(--navy)';this.style.borderColor='var(--border)'">Space Law</a>
+          <a href="#litigation" style="font-size:11px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--navy); border:1px solid var(--border); background:#fff; padding:7px 14px; border-radius:2px; text-decoration:none; transition:all 0.2s;" onmouseover="this.style.background='var(--navy)';this.style.color='#fff';this.style.borderColor='var(--navy)'" onmouseout="this.style.background='#fff';this.style.color='var(--navy)';this.style.borderColor='var(--border)'">Litigation</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scrolling ticker of all 12 areas -->
+    <div style="border-top:1px solid var(--border); overflow:hidden; padding:18px 0; margin:0 -40px; padding-left:40px;">
+      <div style="display:flex; white-space:nowrap;" id="ticker">
+        <div style="display:flex; animation:ticker 30s linear infinite;" id="ticker-track">
+          <span style="font-family:'Cormorant Garamond',serif; font-size:15px; color:var(--text-light); padding:0 28px; border-right:1px solid var(--border);">Energy &amp; Natural Resources</span>
+          <span style="font-family:'Cormorant Garamond',serif; font-size:15px; color:var(--text-light); padding:0 28px; border-right:1px solid var(--border);">Corporate Commercial Law</span>
+          <span style="font-family:'Cormorant Garamond',serif; font-size:15px; color:var(--text-light); padding:0 28px; border-right:1px solid var(--border);">Maritime &amp; Aviation</span>
+          <span style="font-family:'Cormorant Garamond',serif; font-size:15px; color:var(--text-light); padding:0 28px; border-right:1px solid var(--border);">Litigation &amp; ADR</span>
+          <span style="font-family:'Cormorant Garamond',serif; font-size:15px; color:var(--text-light); padding:0 28px; border-right:1px solid var(--border);">Debt Recovery &amp; Insolvency</span>
+          <span style="font-family:'Cormorant Garamond',serif; font-size:15px; color:var(--text-light); padding:0 28px; border-right:1px solid var(--border);">Space Law</span>
+          <span style="font-family:'Cormorant Garamond',serif; font-size:15px; color:var(--text-light); padding:0 28px; border-right:1px solid var(--border);">Sports, Entertainment &amp; Tech</span>
+          <span style="font-family:'Cormorant Garamond',serif; font-size:15px; color:var(--text-light); padding:0 28px; border-right:1px solid var(--border);">Governance Advisory</span>
+          <span style="font-family:'Cormorant Garamond',serif; font-size:15px; color:var(--text-light); padding:0 28px; border-right:1px solid var(--border);">Environmental Justice</span>
+          <span style="font-family:'Cormorant Garamond',serif; font-size:15px; color:var(--text-light); padding:0 28px; border-right:1px solid var(--border);">Real Estate &amp; Property</span>
+          <span style="font-family:'Cormorant Garamond',serif; font-size:15px; color:var(--text-light); padding:0 28px; border-right:1px solid var(--border);">Medical Negligence &amp; Healthcare</span>
+          <span style="font-family:'Cormorant Garamond',serif; font-size:15px; color:var(--text-light); padding:0 28px; border-right:1px solid var(--border);">Alternative Dispute Resolution</span>
+          <!-- duplicate for seamless loop -->
+          <span style="font-family:'Cormorant Garamond',serif; font-size:15px; color:var(--text-light); padding:0 28px; border-right:1px solid var(--border);">Energy &amp; Natural Resources</span>
+          <span style="font-family:'Cormorant Garamond',serif; font-size:15px; color:var(--text-light); padding:0 28px; border-right:1px solid var(--border);">Corporate Commercial Law</span>
+          <span style="font-family:'Cormorant Garamond',serif; font-size:15px; color:var(--text-light); padding:0 28px; border-right:1px solid var(--border);">Maritime &amp; Aviation</span>
+          <span style="font-family:'Cormorant Garamond',serif; font-size:15px; color:var(--text-light); padding:0 28px; border-right:1px solid var(--border);">Litigation &amp; ADR</span>
+          <span style="font-family:'Cormorant Garamond',serif; font-size:15px; color:var(--text-light); padding:0 28px;">Debt Recovery &amp; Insolvency</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Pause ticker on hover
+  document.getElementById('ticker').addEventListener('mouseover', () => { document.getElementById('ticker-track').style.animationPlayState = 'paused'; });
+  document.getElementById('ticker').addEventListener('mouseout', () => { document.getElementById('ticker-track').style.animationPlayState = 'running'; });
+  // Hero inner responsive
+  function heroResp() {
+    const h = document.getElementById('hero-inner');
+    if (h) h.style.gridTemplateColumns = window.innerWidth < 768 ? '1fr' : '1fr 1fr';
+  }
+  heroResp(); window.addEventListener('resize', heroResp);
+</script>
+
+<!-- ═══════════════════ FEATURED BENTO (Top 2 areas) ════════════ -->
+<section style="background:var(--off-white); padding:80px 0 0;" id="featured">
+  <div class="container">
+    <div style="display:grid; grid-template-columns:7fr 5fr; gap:20px; align-items:stretch;" id="featured-grid">
+
+      <!-- Energy – large featured -->
+      <div class="featured-card fade-up">
+        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyz6ysA8P3jOUQQf_-okffahagRhRqy2o-nRAZyj4KQPaehRiYGOqF8u7rTywHRax_q8j0PUAyHCc1KljpK9uwCRTUN6MuEh9-OZEaUJNo1lKySwoQLxsLj_Bp-x5fU_D1n5JfzKS_uqzCAKpcJE6v1fTP7ty_k6ZePfdjMaYREyNKP1Rq8TAEmD1XD8VgOe2ZMVBQB48TbrRtMAK7UakSHyohqfC6SQ6HEywHYz4Me5vvv5MRp2NoFhWbokM2Jh903VbFMyo_Keuj" alt="Energy & Natural Resources"/>
+        <div class="featured-card-overlay"></div>
+        <div class="featured-card-body">
+          <span class="featured-badge">Pillar Practice</span>
+          <h2 class="featured-title">Energy &amp; Natural Resources</h2>
+          <p class="featured-desc">Navigating the complexities of oil, gas, and renewable energy sectors. We provide counsel on licensing, environmental compliance, and large-scale project financing in the heart of Nigeria's energy transition.</p>
+          <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:16px;">
+            <span style="background:rgba(200,169,110,0.2); border:1px solid rgba(200,169,110,0.3); color:var(--gold-light); font-size:10px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; padding:4px 10px; border-radius:2px;">Oil & Gas</span>
+            <span style="background:rgba(200,169,110,0.2); border:1px solid rgba(200,169,110,0.3); color:var(--gold-light); font-size:10px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; padding:4px 10px; border-radius:2px;">Renewables</span>
+            <span style="background:rgba(200,169,110,0.2); border:1px solid rgba(200,169,110,0.3); color:var(--gold-light); font-size:10px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; padding:4px 10px; border-radius:2px;">Project Finance</span>
+            <span style="background:rgba(200,169,110,0.2); border:1px solid rgba(200,169,110,0.3); color:var(--gold-light); font-size:10px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; padding:4px 10px; border-radius:2px;">Environmental Compliance</span>
+          </div>
+          <div class="featured-arrow">Explore this area →</div>
+        </div>
+      </div>
+
+      <!-- Debt Recovery – navy accent -->
+      <div class="navy-card fade-up delay-1">
+        <div>
+          <div class="navy-card-icon">💼</div>
+          <span style="font-size:9px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); background:rgba(200,169,110,0.1); border:1px solid rgba(200,169,110,0.2); padding:4px 10px; border-radius:2px; display:inline-block; margin-bottom:16px;">High-Demand Practice</span>
+          <h3 class="navy-card-title">Debt Recovery &amp; Insolvency</h3>
+          <p class="navy-card-desc">Strategic asset recovery and corporate restructuring. We represent creditors and debtors in high-stakes insolvency proceedings with surgical precision and a track record of decisive outcomes.</p>
+          <ul class="navy-card-list">
+            <li>Corporate Restructuring</li>
+            <li>Asset Tracing & Recovery</li>
+            <li>Liquidation Support</li>
+            <li>Creditor Representation</li>
+          </ul>
+        </div>
+        <div style="margin-top:32px; padding-top:24px; border-top:1px solid rgba(255,255,255,0.08);">
+          <a href="#" style="font-size:12px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold-light); text-decoration:none; display:inline-flex; align-items:center; gap:8px; transition:gap 0.2s;" onmouseover="this.style.gap='14px'" onmouseout="this.style.gap='8px'">Learn More →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ LITIGATION WIDE CARD ════════════════════ -->
+<section style="background:var(--off-white); padding:20px 0 0;" id="litigation">
+  <div class="container">
+    <div class="wide-card fade-up" id="wide-card">
+      <!-- NOTE TO STANLEY: Replace with a courtroom image downloaded from oal.law -->
+      <img class="wide-card-img" src="./images/handshakeblogpic.jpg"/>
+      <div class="wide-card-body">
+        <div class="wide-card-tag">Dispute Resolution</div>
+        <h3 class="wide-card-title">Litigation &amp; Alternative Dispute Resolution</h3>
+        <p class="wide-card-desc">Our litigators are renowned for their prowess in superior courts, yet we champion arbitration and mediation to achieve efficient, client-centred outcomes. From Federal High Court to the Supreme Court — OAL commands every arena.</p>
+        <div class="wide-card-btns">
+          <button class="wide-tag-btn">Commercial Arbitration</button>
+          <button class="wide-tag-btn">Supreme Court Appeals</button>
+          <button class="wide-tag-btn">Mediation</button>
+          <button class="wide-tag-btn">International ADR</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ MAIN PRACTICE GRID (8 areas) ════════════ -->
+<section style="background:var(--off-white); padding:40px 0 80px;" id="grid">
+  <div class="container">
+    <div style="text-align:center; max-width:560px; margin:40px auto 56px;" class="fade-up">
+      <div class="section-label">All Practice Areas</div>
+      <div class="gold-line" style="margin:0 auto 28px;"></div>
+      <h2 class="section-title">The Full Scope of Our Expertise</h2>
+    </div>
+
+    <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:24px;" id="practices-grid">
+
+      <!-- Corporate Commercial -->
+      <div class="practice-card fade-up">
+        <div class="practice-card-icon">🤝</div>
+        <h3 class="practice-card-title">Corporate &amp; Commercial Law</h3>
+        <p class="practice-card-desc">From M&A to regulatory compliance, we serve as the legal architects for businesses seeking sustainable growth, governance excellence, and cross-border structuring.</p>
+        <div class="practice-card-tags">
+          <span class="practice-tag">M&A</span>
+          <span class="practice-tag">Joint Ventures</span>
+          <span class="practice-tag">Governance</span>
+          <span class="practice-tag">Compliance</span>
+        </div>
+        <a href="#" class="practice-card-link">Explore Area →</a>
+      </div>
+
+      <!-- Maritime & Aviation -->
+      <div class="practice-card fade-up delay-1">
+        <div class="practice-card-icon">⚓</div>
+        <h3 class="practice-card-title">Maritime &amp; Aviation</h3>
+        <p class="practice-card-desc">As leaders in admiralty law, we handle vessel arrests, shipping litigation, cabotage issues, and aviation regulatory matters for global maritime and airline entities.</p>
+        <div class="practice-card-tags">
+          <span class="practice-tag">Admiralty</span>
+          <span class="practice-tag">Shipping Finance</span>
+          <span class="practice-tag">Cargo Claims</span>
+          <span class="practice-tag">Aviation Reg.</span>
+        </div>
+        <a href="#" class="practice-card-link">Explore Area →</a>
+      </div>
+
+      <!-- Governance Advisory -->
+      <div class="practice-card fade-up delay-2">
+        <div class="practice-card-icon">🏛️</div>
+        <h3 class="practice-card-title">Governance Advisory</h3>
+        <p class="practice-card-desc">OAL advises government ministries, international organisations, and public agencies on policy reform, institutional compliance, and governance best practices.</p>
+        <div class="practice-card-tags">
+          <span class="practice-tag">Policy Reform</span>
+          <span class="practice-tag">Public Sector</span>
+          <span class="practice-tag">Institutional Law</span>
+        </div>
+        <a href="#" class="practice-card-link">Explore Area →</a>
+      </div>
+
+      <!-- Sports, Entertainment & Technology -->
+      <div class="practice-card fade-up">
+        <div class="practice-card-icon">🎬</div>
+        <h3 class="practice-card-title">Sports, Entertainment &amp; Technology</h3>
+        <p class="practice-card-desc">OAL's SET practice provides integrated legal counsel for the creative and digital economy — from Netflix productions and sports contracts to IP protection and data privacy compliance.</p>
+        <div class="practice-card-tags">
+          <span class="practice-tag">IP Protection</span>
+          <span class="practice-tag">Film & Media</span>
+          <span class="practice-tag">Tech Law</span>
+          <span class="practice-tag">Sports Contracts</span>
+        </div>
+        <a href="#" class="practice-card-link">Explore Area →</a>
+      </div>
+
+      <!-- Environmental Justice -->
+      <div class="practice-card fade-up delay-1">
+        <div class="practice-card-icon">🌿</div>
+        <h3 class="practice-card-title">Environmental Justice</h3>
+        <p class="practice-card-desc">OAL prosecutes landmark constitutional cases on behalf of communities affected by environmental degradation — championing accountability from both corporations and government agencies.</p>
+        <div class="practice-card-tags">
+          <span class="practice-tag">Constitutional Cases</span>
+          <span class="practice-tag">ESG Compliance</span>
+          <span class="practice-tag">Community Rights</span>
+        </div>
+        <a href="#" class="practice-card-link">Explore Area →</a>
+      </div>
+
+      <!-- Real Estate & Property -->
+      <div class="practice-card fade-up delay-2">
+        <div class="practice-card-icon">🏗️</div>
+        <h3 class="practice-card-title">Real Estate &amp; Property Law</h3>
+        <p class="practice-card-desc">We advise developers, investors, and public entities on land acquisition, title verification, construction contracts, and complex property financing structures across Nigeria.</p>
+        <div class="practice-card-tags">
+          <span class="practice-tag">Land Acquisition</span>
+          <span class="practice-tag">Title Verification</span>
+          <span class="practice-tag">Property Finance</span>
+        </div>
+        <a href="#" class="practice-card-link">Explore Area →</a>
+      </div>
+
+      <!-- Medical Negligence & Healthcare -->
+      <div class="practice-card fade-up">
+        <div class="practice-card-icon">⚕️</div>
+        <h3 class="practice-card-title">Medical Negligence &amp; Healthcare Law</h3>
+        <p class="practice-card-desc">OAL's healthcare practice handles clinical negligence claims, hospital liability, regulatory compliance for healthcare institutions, and patient rights advocacy with sensitivity and precision.</p>
+        <div class="practice-card-tags">
+          <span class="practice-tag">Clinical Negligence</span>
+          <span class="practice-tag">Hospital Liability</span>
+          <span class="practice-tag">Patient Rights</span>
+        </div>
+        <a href="#" class="practice-card-link">Explore Area →</a>
+      </div>
+
+      <!-- Space Law -->
+      <div class="practice-card fade-up delay-1" style="border-top-color: var(--red); background: linear-gradient(135deg, #fff 0%, #fdf8f0 100%);">
+        <div class="practice-card-icon">🛰️</div>
+        <div style="display:inline-block; background:var(--red); color:#fff; font-size:9px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; padding:3px 8px; border-radius:2px; margin-bottom:10px;">Pioneering Practice</div>
+        <h3 class="practice-card-title">Space Law</h3>
+        <p class="practice-card-desc">One of Africa's first law firms with a dedicated Space Law practice. OAL advises on satellite licensing, spectrum allocation, space commerce regulation, and Nigeria's participation in international space treaties.</p>
+        <div class="practice-card-tags">
+          <span class="practice-tag">Satellite Licensing</span>
+          <span class="practice-tag">Spectrum Law</span>
+          <span class="practice-tag">Space Commerce</span>
+        </div>
+        <a href="#" class="practice-card-link">Explore Area →</a>
+      </div>
+
+      <!-- ADR / Arbitration standalone -->
+      <div class="practice-card fade-up delay-2">
+        <div class="practice-card-icon">⚖️</div>
+        <h3 class="practice-card-title">Alternative Dispute Resolution &amp; Arbitration</h3>
+        <p class="practice-card-desc">OAL's ADR practice provides bespoke arbitration, mediation, and conciliation services — offering clients faster, more confidential, and often more commercially rational resolution of complex disputes.</p>
+        <div class="practice-card-tags">
+          <span class="practice-tag">International Arbitration</span>
+          <span class="practice-tag">Mediation</span>
+          <span class="practice-tag">Conciliation</span>
+        </div>
+        <a href="#" class="practice-card-link">Explore Area →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ SECTOR STRIP ════════════════════════════ -->
+<section style="background:var(--navy); padding:80px 0;">
+  <div class="container">
+    <div style="display:grid; grid-template-columns:1fr 2fr; gap:60px; align-items:center;" id="sector-grid" class="fade-up">
+      <div>
+        <div class="section-label" style="color:var(--gold-light);">Industry Focus</div>
+        <div class="gold-line"></div>
+        <h2 style="font-family:'Cormorant Garamond',serif; font-size:clamp(28px,3vw,42px); font-weight:700; color:#fff; line-height:1.15; margin-bottom:16px;">We Handle the Legal Complexity.<br/><em style="color:var(--gold-light); font-style:italic;">Leaders & Innovators Win.</em></h2>
+        <p style="font-size:14px; color:rgba(255,255,255,0.55); line-height:1.75;">Whatever the challenge — we don't just advise, we architect outcomes that scale across every sector of Nigeria's economy.</p>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:12px;" id="sectors-grid">
+        <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); border-radius:2px; padding:20px 18px; transition:background 0.2s, border-color 0.2s;" onmouseover="this.style.background='rgba(200,169,110,0.1)';this.style.borderColor='rgba(200,169,110,0.3)'" onmouseout="this.style.background='rgba(255,255,255,0.05)';this.style.borderColor='rgba(255,255,255,0.08)'">
+          <div style="font-size:22px; margin-bottom:8px;">⚡</div>
+          <div style="font-size:12px; font-weight:600; color:#fff;">Energy & Power</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); border-radius:2px; padding:20px 18px; transition:background 0.2s, border-color 0.2s;" onmouseover="this.style.background='rgba(200,169,110,0.1)';this.style.borderColor='rgba(200,169,110,0.3)'" onmouseout="this.style.background='rgba(255,255,255,0.05)';this.style.borderColor='rgba(255,255,255,0.08)'">
+          <div style="font-size:22px; margin-bottom:8px;">🚢</div>
+          <div style="font-size:12px; font-weight:600; color:#fff;">Maritime & Shipping</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); border-radius:2px; padding:20px 18px; transition:background 0.2s, border-color 0.2s;" onmouseover="this.style.background='rgba(200,169,110,0.1)';this.style.borderColor='rgba(200,169,110,0.3)'" onmouseout="this.style.background='rgba(255,255,255,0.05)';this.style.borderColor='rgba(255,255,255,0.08)'">
+          <div style="font-size:22px; margin-bottom:8px;">🏦</div>
+          <div style="font-size:12px; font-weight:600; color:#fff;">Banking & Finance</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); border-radius:2px; padding:20px 18px; transition:background 0.2s, border-color 0.2s;" onmouseover="this.style.background='rgba(200,169,110,0.1)';this.style.borderColor='rgba(200,169,110,0.3)'" onmouseout="this.style.background='rgba(255,255,255,0.05)';this.style.borderColor='rgba(255,255,255,0.08)'">
+          <div style="font-size:22px; margin-bottom:8px;">🎬</div>
+          <div style="font-size:12px; font-weight:600; color:#fff;">Media & Entertainment</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); border-radius:2px; padding:20px 18px; transition:background 0.2s, border-color 0.2s;" onmouseover="this.style.background='rgba(200,169,110,0.1)';this.style.borderColor='rgba(200,169,110,0.3)'" onmouseout="this.style.background='rgba(255,255,255,0.05)';this.style.borderColor='rgba(255,255,255,0.08)'">
+          <div style="font-size:22px; margin-bottom:8px;">🏗️</div>
+          <div style="font-size:12px; font-weight:600; color:#fff;">Real Estate & Construction</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); border-radius:2px; padding:20px 18px; transition:background 0.2s, border-color 0.2s;" onmouseover="this.style.background='rgba(200,169,110,0.1)';this.style.borderColor='rgba(200,169,110,0.3)'" onmouseout="this.style.background='rgba(255,255,255,0.05)';this.style.borderColor='rgba(255,255,255,0.08)'">
+          <div style="font-size:22px; margin-bottom:8px;">🛰️</div>
+          <div style="font-size:12px; font-weight:600; color:#fff;">Technology & Space</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ CTA ══════════════════════════════════════ -->
+<section style="background:#fff; padding:100px 0;">
+  <div class="container">
+    <div style="background:var(--off-white); border-radius:4px; padding:72px 60px; text-align:center; position:relative; overflow:hidden;" class="fade-up">
+      <div style="position:absolute; right:-10px; top:50%; transform:translateY(-50%); font-family:'Cormorant Garamond',serif; font-size:220px; font-weight:700; color:rgba(13,31,60,0.04); line-height:1; pointer-events:none; user-select:none;">OAL</div>
+      <div style="position:relative; z-index:1; max-width:600px; margin:0 auto;">
+        <div class="section-label">Get Legal Advice</div>
+        <div class="gold-line" style="margin:0 auto 28px;"></div>
+        <h2 style="font-family:'Cormorant Garamond',serif; font-size:clamp(28px,3.5vw,48px); font-weight:700; color:var(--navy); line-height:1.15; margin-bottom:16px;">Need Legal Advice in These Areas?</h2>
+        <p style="color:var(--text-mid); font-size:16px; line-height:1.75; margin-bottom:40px;">Our team of senior advocates and partners are ready to provide the clarity your legal situation demands — promptly, professionally, and ethically.</p>
+        <div style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap;">
+          <a href="contact.html" class="btn-gold">Contact Us Today →</a>
+          <a href="#" class="btn-outline-navy">Download Firm Brochure</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ FOOTER ════════════════════════════════════ -->
+<footer class="footer">
+  <div class="container">
+    <div style="display:grid; gap:48px; padding-bottom:60px; border-bottom:1px solid rgba(255,255,255,0.07);" id="footer-grid">
+      <div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:32px; font-weight:700; margin-bottom:4px; line-height:1;">
+          <span style="color:var(--red)">OA</span><span style="color:var(--gold)">L</span>
+        </div>
+        <div style="font-size:9px; letter-spacing:0.22em; color:rgba(255,255,255,0.35); text-transform:uppercase; font-weight:500; margin-bottom:20px;">Olisa Agbakoba Legal</div>
+        <p style="font-size:13px; color:rgba(255,255,255,0.45); line-height:1.75; max-width:280px; margin-bottom:28px;">A multi-specialist law firm providing comprehensive legal services with a focus on commercial law, energy, arbitration, and policy advocacy.</p>
+        <div style="display:flex; gap:12px;">
+          <a href="#" style="width:36px; height:36px; border:1px solid rgba(255,255,255,0.15); border-radius:2px; display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,0.5); font-size:14px; text-decoration:none; transition:all 0.2s;" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.15)';this.style.color='rgba(255,255,255,0.5)'">in</a>
+          <a href="#" style="width:36px; height:36px; border:1px solid rgba(255,255,255,0.15); border-radius:2px; display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,0.5); font-size:14px; text-decoration:none; transition:all 0.2s;" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.15)';this.style.color='rgba(255,255,255,0.5)'">tw</a>
+          <a href="#" style="width:36px; height:36px; border:1px solid rgba(255,255,255,0.15); border-radius:2px; display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,0.5); font-size:14px; text-decoration:none; transition:all 0.2s;" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.15)';this.style.color='rgba(255,255,255,0.5)'">fb</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-heading">Quick Links</div>
+        <a href="index.html" class="footer-link">Home</a>
+        <a href="about.html" class="footer-link">About Us</a>
+        <a href="our-people.html" class="footer-link">Our People</a>
+        <a href="practice-areas.html" class="footer-link">Practice Areas</a>
+        <a href="#" class="footer-link">OAL Academy</a>
+        <a href="#" class="footer-link">Insights</a>
+        <a href="#" class="footer-link">Careers</a>
+      </div>
+      <div>
+        <div class="footer-heading">Legal</div>
+        <a href="#" class="footer-link">Privacy Policy</a>
+        <a href="#" class="footer-link">Terms of Use</a>
+        <a href="#" class="footer-link">Disclaimer</a>
+        <a href="#" class="footer-link">Cookies Policy</a>
+        <a href="#" class="footer-link">Sitemap</a>
+      </div>
+      <div>
+        <div class="footer-heading">Our Offices</div>
+        <div style="margin-bottom:16px;">
+          <div style="font-size:11px; color:var(--gold); font-weight:600; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:4px;">Lagos (HQ)</div>
+          <div style="font-size:13px; color:rgba(255,255,255,0.45); line-height:1.6;">10A Ilabere Street,<br/>Ikoyi, Lagos</div>
+        </div>
+        <div style="margin-bottom:16px;">
+          <div style="font-size:11px; color:var(--gold); font-weight:600; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:4px;">Abuja</div>
+          <div style="font-size:13px; color:rgba(255,255,255,0.45); line-height:1.6;">FCT, Abuja</div>
+        </div>
+        <div>
+          <div style="font-size:11px; color:var(--gold); font-weight:600; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:4px;">Port Harcourt</div>
+          <div style="font-size:13px; color:rgba(255,255,255,0.45); line-height:1.6;">Port Harcourt, Rivers State</div>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex; justify-content:space-between; align-items:center; padding-top:28px; flex-wrap:wrap; gap:12px;">
+      <p style="font-size:12px; color:rgba(255,255,255,0.3);">© 2025 Olisa Agbakoba Legal. All Rights Reserved.</p>
+      <p style="font-size:12px; color:rgba(255,255,255,0.3);">Designed with excellence for OAL.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════════ SCRIPTS ══════════════════════════════════ -->
+<script>
+  function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Smooth anchor scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) { e.preventDefault(); window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - 90, behavior: 'smooth' }); }
+    });
+  });
+
+  function applyResponsive() {
+    const w = window.innerWidth;
+
+    const fg = document.getElementById('featured-grid');
+    if (fg) fg.style.gridTemplateColumns = w < 768 ? '1fr' : '7fr 5fr';
+
+    const wc = document.getElementById('wide-card');
+    if (wc) wc.style.gridTemplateColumns = w < 768 ? '1fr' : '1fr 1fr';
+
+    const pg = document.getElementById('practices-grid');
+    if (pg) pg.style.gridTemplateColumns = w < 640 ? '1fr' : w < 1024 ? '1fr 1fr' : 'repeat(3, 1fr)';
+
+    const sg = document.getElementById('sector-grid');
+    if (sg) sg.style.gridTemplateColumns = w < 900 ? '1fr' : '1fr 2fr';
+
+    const secG = document.getElementById('sectors-grid');
+    if (secG) secG.style.gridTemplateColumns = w < 640 ? '1fr 1fr' : 'repeat(3, 1fr)';
+
+    const footG = document.getElementById('footer-grid');
+    if (footG) footG.style.gridTemplateColumns = w < 768 ? '1fr' : w < 1024 ? '1fr 1fr' : '2fr 1fr 1fr 1fr';
+  }
+
+  applyResponsive();
+  window.addEventListener('resize', applyResponsive);
+</script>
+
+</body>
+</html>
