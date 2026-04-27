@@ -239,6 +239,55 @@
     .container { padding: 0 20px; }
     .page-hero { padding: 130px 0 70px; }
   }
+
+   /* ── HAMBURGER ── */
+  .hamburger { background: none; border: none; cursor: pointer; padding: 4px; }
+  .hamburger span {
+    display: block; width: 22px; height: 2px;
+    background: #fff; margin: 5px 0;
+    transition: all 0.3s;
+  }
+
+  /* ── MOBILE ── */
+  @media (max-width: 768px) {
+    .container { padding: 0 20px; }
+    .hero-title { font-size: clamp(32px, 9vw, 48px); }
+    .section-title { font-size: clamp(26px, 6vw, 38px); }
+    .stat-number { font-size: 38px; }
+    .about-img-wrap::before { display: none; }
+    .about-accent-box { position: static; margin-top: 20px; display: inline-block; }
+  }
+  /* GLOBAL MOBILE FIXES */
+@media (max-width: 768px) {
+
+  /* STACK ALL 2-COLUMN SECTIONS */
+  #about-grid,
+  #history-grid,
+  #culture-grid {
+    grid-template-columns: 1fr !important;
+    gap: 40px !important;
+  }
+
+  /* VALUES */
+  #values-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* STATS */
+  #stats-grid {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  /* TESTIMONIALS */
+  #testimonials-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* FOOTER */
+  #footer-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
 </style>
 </head>
 <body>
@@ -321,7 +370,7 @@
       <details style="border-bottom:1px solid rgba(255,255,255,0.08);">
         <summary style="padding:14px 0; color:rgba(255,255,255,0.8); font-size:14px; font-weight:500; cursor:pointer; list-style:none; display:flex; justify-content:space-between;">Services <span>▾</span></summary>
         <div style="padding-bottom:8px;">
-          <a href="#" style="display:block; padding:10px 0 10px 16px; color:rgba(255,255,255,0.55); font-size:13px; text-decoration:none;">Practice Areas</a>
+          <a href="practice-areas.html" style="display:block; padding:10px 0 10px 16px; color:rgba(255,255,255,0.55); font-size:13px; text-decoration:none;">Practice Areas</a>
           <a href="#" style="display:block; padding:10px 0 10px 16px; color:rgba(255,255,255,0.55); font-size:13px; text-decoration:none;">Sectors</a>
         </div>
       </details>
@@ -337,6 +386,17 @@
       <a href="#" class="btn-gold" style="width:100%; justify-content:center; margin-top:20px; font-size:12px;">Book Consultation</a>
     </div>
   </div>
+
+  <style>
+  @media (max-width: 900px) {
+    .hidden-mobile { display: none !important; }
+    .show-mobile { display: block !important; }
+  }
+  @media (min-width: 901px) {
+    .hidden-mobile { display: flex !important; }
+    .show-mobile { display: none !important; }
+  }
+</style>
 </header>
 
 <!-- ═══════════════════ PAGE HERO ════════════════════════════════ -->
@@ -780,34 +840,7 @@
   }, { threshold: 0.1 });
   document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
-  // Responsive grids
-  function applyResponsive() {
-    const w = window.innerWidth;
-
-    const aboutGrid = document.getElementById('about-grid');
-    if (aboutGrid) aboutGrid.style.gridTemplateColumns = w < 768 ? '1fr' : '1fr 1fr';
-
-    const historyGrid = document.getElementById('history-grid');
-    if (historyGrid) historyGrid.style.gridTemplateColumns = w < 768 ? '1fr' : '1fr 1fr';
-
-    const valuesGrid = document.getElementById('values-grid');
-    if (valuesGrid) valuesGrid.style.gridTemplateColumns = w < 640 ? '1fr' : w < 1024 ? '1fr 1fr' : 'repeat(4, 1fr)';
-
-    const statsGrid = document.getElementById('stats-grid');
-    if (statsGrid) statsGrid.style.gridTemplateColumns = w < 640 ? '1fr 1fr' : 'repeat(5, 1fr)';
-
-    const testimonialsGrid = document.getElementById('testimonials-grid');
-    if (testimonialsGrid) testimonialsGrid.style.gridTemplateColumns = w < 768 ? '1fr' : w < 1024 ? '1fr 1fr' : '1fr 1fr 1fr';
-
-    const cultureGrid = document.getElementById('culture-grid');
-    if (cultureGrid) cultureGrid.style.gridTemplateColumns = w < 768 ? '1fr' : '1fr 1fr';
-
-    const footerGrid = document.getElementById('footer-grid');
-    if (footerGrid) footerGrid.style.gridTemplateColumns = w < 768 ? '1fr' : w < 1024 ? '1fr 1fr' : '2fr 1fr 1fr 1fr';
-  }
-
-  applyResponsive();
-  window.addEventListener('resize', applyResponsive);
+  
 </script>
 
 </body>
